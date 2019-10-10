@@ -276,7 +276,7 @@ class PesquisaViewController: UIViewController {
         //FUNCAO PARA VERIFICAR SE UM FILME ESTÁ NA SUA LISTA DE FAVORITOS
         
         let favoritos = DAOFilme().pegarListaFavoritos()
-        
+    
         for favorito in favoritos {
             if favorito == filmeID {
                return true
@@ -327,48 +327,48 @@ class PesquisaViewController: UIViewController {
     
     @objc func removerFavoritoPesquisa(sender: UIButton){
         
-//        //PEGAR POSICAO DO FILME NO ARRAY
-//        guard let index = (sender.layer.value(forKey: "index")) as? Int else {
-//            return
-//        }
-//
-//        let filme = self.listaFilmes[index]
-//
-//        let id =  filme.filmeDecodable?.imdbID
-//
-//        DAOFilmes().removerFavorito(id: id ?? "")
-//
-//        //SE ESTIVER NA ABA DE FAVORITOS, REMOVER O FILME DA LISTA DE PESQUISA TAMBEM
-//        if filtro == "favoritos" {
-//
-//            for (i,filme) in listaFilmes.enumerated() {
-//
-//                if filme.filmeDecodable?.imdbID == id {
-//                    listaFilmes.remove(at: i)
-//                }
-//
-//            }
-//
-//        }
-//
-//        collectionView.reloadData()
+        //PEGAR POSICAO DO FILME NO ARRAY
+        guard let index = (sender.layer.value(forKey: "index")) as? Int else {
+            return
+        }
+
+        let filme = self.listaFilmes[index]
+
+        let id =  String(filme.filmeDecodable?.id ?? 0)
+
+        DAOFilme().removerFavorito(id: id)
+
+        //SE ESTIVER NA ABA DE FAVORITOS, REMOVER O FILME DA LISTA DE PESQUISA TAMBEM
+        if filtro == "favoritos" {
+
+            for (i,filme) in listaFilmes.enumerated() {
+
+                if String(filme.filmeDecodable?.id ?? 0) == id {
+                    listaFilmes.remove(at: i)
+                }
+
+            }
+
+        }
+
+        collectionView.reloadData()
         
     }
     
     @objc func adicionarFavorito(sender: UIButton){
         
-//        //PENGANDO A POSICAO DO FILME NO ARRAY
-//        guard let index = (sender.layer.value(forKey: "index")) as? Int else {
-//            return
-//        }
-//
-//        let filme = self.listaFilmes[index]
-//
-//        let id =  filme.filmeDecodable?.imdbID
-//
-//        DAOFilmes().salvarFilmeFavorito(filme: id ?? "")
-//
-//        collectionView.reloadData()
+        //PENGANDO A POSICAO DO FILME NO ARRAY
+        guard let index = (sender.layer.value(forKey: "index")) as? Int else {
+            return
+        }
+
+        let filme = self.listaFilmes[index]
+
+        let id =  "\(String(describing: filme.filmeDecodable?.id ?? 0))"
+
+        DAOFilme().salvarFilmeFavorito(filme: id)
+
+        collectionView.reloadData()
         
     }
 
@@ -405,9 +405,7 @@ extension PesquisaViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PesquisaCell", for: indexPath) as! PesquisaCell
         
         let filme = listaFilmes[indexPath.row]
-        
-        print(filme)
-        
+                
         cell.notaImagem.image = filme.estrela
         
         var titulo: String?
@@ -436,16 +434,20 @@ extension PesquisaViewController: UICollectionViewDelegate, UICollectionViewData
         
         //VERIFICAR SE O FILME ESTÁ NA SUA LISTA DE FAVORITOS
         let id = String(filme.filmeDecodable?.id ?? 0)
+        
         let favorito = verificarFavorito(filmeID: id)
         
         //ADICIONANDO ACOES PARA O BOTAO FAVORITO E DANDO UMA IMAGEM PARA ELE DE ACORDO COM O RESULTADO
         if favorito {
+            
+            print("aqui")
 
             cell.favorito.addTarget(self, action: #selector(removerFavoritoPesquisa), for: UIControl.Event.touchUpInside)
             cell.favorito.setImage(UIImage(named: "favoritoSelecionado"), for: .normal)
 
         } else {
-            
+
+            print("aqui2")
             cell.favorito.setImage(UIImage(named: "favorito"), for: .normal)
             cell.favorito.addTarget(self, action: #selector(adicionarFavorito), for: UIControl.Event.touchUpInside)
             

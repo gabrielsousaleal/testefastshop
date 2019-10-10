@@ -158,7 +158,7 @@ class DAOFilme {
     }
     
     func pegarListaFavoritos() -> [String]{
-        
+                
         return UserDefaults.standard.stringArray(forKey: "favoritos") ?? []
         
     }
@@ -166,7 +166,7 @@ class DAOFilme {
     func desfavoritar(filme: String){
         
         var favoritos = pegarListaFavoritos()
-        
+                
         for (i,favorito) in favoritos.enumerated() {
             if favorito == filme {
                 favoritos.remove(at: i)
