@@ -93,6 +93,57 @@ class DAOFilme {
 
     }
     
+    func pegarFilmeDetalhado(id: String, completion: @escaping ([FilmeObjeto]) -> () ){
+        
+        var listaFilmesObj: [FilmeObjeto] = []
+        
+        let idInt = Int(id) ?? 0
+        
+        let url = "https://api.themoviedb.org/3/movie/\(idInt)?api_key=dcf373a212e3fd454f97f09a273a42e2&language=pt-BR"
+        
+        let request = NSMutableURLRequest(url: NSURL(string: url)! as URL,
+                                                 cachePolicy: .useProtocolCachePolicy,
+                                                   timeoutInterval: 10.0)
+        request.httpMethod = "GET"
+
+        let session = URLSession.shared
+        
+        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+                
+            if let erro = error {
+                    print(erro.localizedDescription)
+                    completion([])
+                }
+                
+            if let data = data {
+                do {
+                    let json = try JSONDecoder().decode(FilmeDecodable.self, from: data)
+                                                    
+                    _ = FilmeObjeto(filmeDecodable: json) { result in
+                                
+                        listaFilmesObj.append(result)
+                                
+                        completion(listaFilmesObj)
+
+                      }
+                        
+                    } catch {
+                       
+                        print(error)
+                        
+                        completion(listaFilmesObj)
+                    }
+                }
+                
+                 
+               })
+
+               dataTask.resume()
+        
+        
+   
+    }
+    
     func pegarFavoritos(completion: @escaping ([FilmeObjeto]) -> () ){
         
         var listaFilmes: [FilmeObjeto] = []
@@ -110,18 +161,18 @@ class DAOFilme {
                 
                 for id in listaFilmesId {
                     
-//                    DAOFilme().pegarFilmeDetalhado(imdbID: id) { filme in
-//                        _ = FilmeObjeto(filme: filme, completion: { filmeObj in
-//                            if let filmeObj = filmeObj {
-//                                listaFilmes.append(filmeObj)
-//                                if listaFilmesId.count == listaFilmesId.count {
-//                                    semaforo.signal()
-//                                    completion(listaFilmes)
-//                                }
-//                            }
-//                        })
-//
-//                    }
+                    DAOFilme().pegarFilmeDetalhado(id: id) { filme in
+                        _ = FilmeObjeto(filmeDecodable: filme[0].filmeDecodable!, completion: { filmeObj in
+                            
+                                listaFilmes.append(filmeObj)
+                                if listaFilmesId.count == listaFilmesId.count {
+                                    semaforo.signal()
+                                    completion(listaFilmes)
+                                }
+                            
+                        })
+
+                    }
                 }
                 
                 //USO DE SEMAFORO PARA ESPERAR QUE O FOR SEJA TOTALMENTE EXECUTADO

@@ -55,44 +55,44 @@ class PesquisaViewController: UIViewController {
     
     //MARK: FUNÇÃO COLLECTION VIEW
        
-//       @objc func recarregarFavoritos(){
-//
-//           DAOFilme().pegarFavoritos { listaFavoritos in
-//
-//               DispatchQueue.main.async {
-//                   // REMOVER A LISTA DE FILMES ANTERIOR
-//                   self.listaFilmes.removeAll()
-//
-//                   //SE NAO TIVER NADA DIGITADO NA SEARCHBAR, MOSTRAR TODOS OS SEUS FAVORITOS COMO PADRÃO
-//                   if self.textoPesquisado.count == 0 {
-//                       self.listaFilmes = listaFavoritos
-//                       self.collectionView.reloadData()
-//                       return
-//                   }
-//
-//                   var listaPesquisa: [FilmeObjeto] = []
-//
-//                   //FOR PARA VERIFICAR SE EXISTE UM FILME NOS FAVORITOS COM O TITULO DIGITADO NA SEARCHBAR
-//                   for filme in listaFavoritos {
-//
-//                       let titulo = filme.filmeDecodable?.Title ?? ""
-//
-//                       let textoPesquisadoFavorito = self.textoPesquisado.replacingOccurrences(of: "_", with: " ")
-//
-//                       if (titulo.lowercased().contains(textoPesquisadoFavorito.lowercased())){
-//                           listaPesquisa.append(filme)
-//                       }
-//
-//                   }
-//
-//                   self.listaFilmes = listaPesquisa
-//
-//                   self.collectionView.reloadData()
-//
-//               }
-//           }
-//
-       //}
+       @objc func recarregarFavoritos(){
+
+           DAOFilme().pegarFavoritos { listaFavoritos in
+
+               DispatchQueue.main.async {
+                   // REMOVER A LISTA DE FILMES ANTERIOR
+                   self.listaFilmes.removeAll()
+
+                   //SE NAO TIVER NADA DIGITADO NA SEARCHBAR, MOSTRAR TODOS OS SEUS FAVORITOS COMO PADRÃO
+                   if self.textoPesquisado.count == 0 {
+                       self.listaFilmes = listaFavoritos
+                       self.collectionView.reloadData()
+                       return
+                   }
+
+                   var listaPesquisa: [FilmeObjeto] = []
+
+                   //FOR PARA VERIFICAR SE EXISTE UM FILME NOS FAVORITOS COM O TITULO DIGITADO NA SEARCHBAR
+                   for filme in listaFavoritos {
+
+                       let titulo = filme.filmeDecodable?.title ?? ""
+
+                       let textoPesquisadoFavorito = self.textoPesquisado.replacingOccurrences(of: "+", with: " ")
+
+                       if (titulo.lowercased().contains(textoPesquisadoFavorito.lowercased())){
+                           listaPesquisa.append(filme)
+                       }
+
+                   }
+
+                   self.listaFilmes = listaPesquisa
+
+                   self.collectionView.reloadData()
+
+               }
+           }
+
+       }
 
        @objc func recarregarCollectionView(){
            
@@ -100,7 +100,7 @@ class PesquisaViewController: UIViewController {
 
            if filtro == "favoritos" {
                
-              // recarregarFavoritos()
+               recarregarFavoritos()
                
            } else {
                
@@ -276,6 +276,8 @@ class PesquisaViewController: UIViewController {
         //FUNCAO PARA VERIFICAR SE UM FILME ESTÁ NA SUA LISTA DE FAVORITOS
         
         let favoritos = DAOFilme().pegarListaFavoritos()
+        
+        print(favoritos)
     
         for favorito in favoritos {
             if favorito == filmeID {
@@ -439,15 +441,11 @@ extension PesquisaViewController: UICollectionViewDelegate, UICollectionViewData
         
         //ADICIONANDO ACOES PARA O BOTAO FAVORITO E DANDO UMA IMAGEM PARA ELE DE ACORDO COM O RESULTADO
         if favorito {
-            
-            print("aqui")
-
             cell.favorito.addTarget(self, action: #selector(removerFavoritoPesquisa), for: UIControl.Event.touchUpInside)
             cell.favorito.setImage(UIImage(named: "favoritoSelecionado"), for: .normal)
 
         } else {
 
-            print("aqui2")
             cell.favorito.setImage(UIImage(named: "favorito"), for: .normal)
             cell.favorito.addTarget(self, action: #selector(adicionarFavorito), for: UIControl.Event.touchUpInside)
             
