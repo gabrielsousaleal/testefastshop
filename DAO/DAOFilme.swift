@@ -93,13 +93,11 @@ class DAOFilme {
 
     }
     
-    func pegarFilmeDetalhado(id: String, completion: @escaping ([FilmeObjeto]) -> () ){
+    func pegarFilmeDetalhado(id: Int, tipo: String, completion: @escaping ([FilmeObjeto]) -> () ){
         
         var listaFilmesObj: [FilmeObjeto] = []
-        
-        let idInt = Int(id) ?? 0
-        
-        let url = "https://api.themoviedb.org/3/movie/\(idInt)?api_key=dcf373a212e3fd454f97f09a273a42e2&language=pt-BR"
+                
+        let url = "https://api.themoviedb.org/3/\(tipo)/\(id)?api_key=dcf373a212e3fd454f97f09a273a42e2&language=pt-BR"
         
         let request = NSMutableURLRequest(url: NSURL(string: url)! as URL,
                                                  cachePolicy: .useProtocolCachePolicy,
@@ -159,9 +157,9 @@ class DAOFilme {
             
             DispatchQueue.main.async {
                 
-                for id in listaFilmesId {
+                for filme in listaFilmesId {
                     
-                    DAOFilme().pegarFilmeDetalhado(id: id) { filme in
+                    DAOFilme().pegarFilmeDetalhado(id: filme.id!,tipo: filme.tipo!) { filme in
                         _ = FilmeObjeto(filmeDecodable: filme[0].filmeDecodable!, completion: { filmeObj in
                             
                                 listaFilmes.append(filmeObj)
@@ -192,34 +190,46 @@ class DAOFilme {
     
     //MARK: USERDEFAULTS
     
-    func salvarFilmeFavorito(filme: String){
+    func salvarFilmeFavorito(filme: Favorito){
         
         var favoritos = pegarListaFavoritos()
         
         //SE JÁ ESTIVER NA LISTA DE FAVORITOS, SAIR DA FUNÇÃO
         for favorito in favoritos {
-            if filme == favorito { return }
+            if filme.id == favorito.id { return }
         }
         
         favoritos.append(filme)
-       
-        UserDefaults.standard.set(favoritos, forKey: "favoritos")
+        
+        let encodedFilme: Data = NSKeyedArchiver.archivedData(withRootObject: favoritos)
+    
+        UserDefaults.standard.set(encodedFilme, forKey: "favoritos")
         
         
     }
     
-    func pegarListaFavoritos() -> [String]{
+    func pegarListaFavoritos() -> [Favorito]{
+        
+        let decoded  = UserDefaults.standard.data(forKey: "favoritos")
+        
+        if decoded == nil {
+            return []
+        }
+        
+        let decodedFilmes = NSKeyedUnarchiver.unarchiveObject(with: decoded!) as? [Favorito] ?? []
+        
+        print(decodedFilmes)
                 
-        return UserDefaults.standard.stringArray(forKey: "favoritos") ?? []
+        return decodedFilmes
         
     }
     
-    func desfavoritar(filme: String){
+    func desfavoritar(filme: Int){
         
         var favoritos = pegarListaFavoritos()
                 
         for (i,favorito) in favoritos.enumerated() {
-            if favorito == filme {
+            if favorito.id == filme {
                 favoritos.remove(at: i)
                 UserDefaults.standard.set(favoritos, forKey: "favoritos")
             }
@@ -229,12 +239,12 @@ class DAOFilme {
         
     }
     
-    func removerFavorito(id: String){
+    func removerFavorito(id: Int){
         
         var listaFavoritos = pegarListaFavoritos()
         
         for (i,favorito) in listaFavoritos.enumerated() {
-            if favorito == id {
+            if favorito.id == id {
               listaFavoritos.remove(at: i)
               UserDefaults.standard.set(listaFavoritos, forKey: "favoritos")
             }

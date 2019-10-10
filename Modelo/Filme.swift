@@ -147,6 +147,7 @@ class FilmeObjeto {
     let overview: String?
     var posterUIImage: UIImage?
     var estrela: UIImage?
+    var tipo: String?
     
     
     init(filmeDecodable: FilmeDecodable, completion: @escaping (FilmeObjeto) -> () ) {
@@ -156,6 +157,14 @@ class FilmeObjeto {
         DAOFilme().baixarPoster(path: filmeDecodable.poster_path ?? "") { imagem in
             
             self.estrela = verificarEstrelas(nota: filmeDecodable.vote_average ?? 0)
+            
+            if filmeDecodable.name != nil {
+                self.tipo = "tv"
+            }
+            
+            if filmeDecodable.title != nil {
+                self.tipo = "movie"
+            }
             
             self.posterUIImage = imagem
             completion(self)
@@ -205,4 +214,28 @@ func verificarEstrelas(nota: Float) -> UIImage{
     return UIImage(named: nomeImagem) ?? UIImage()
     
     
+}
+
+
+
+class Favorito: NSObject, NSCoding {
+    var id: Int?
+    var tipo: String?
+
+
+    init(id: Int, tipo: String) {
+        self.id = id
+        self.tipo = tipo
+    }
+
+    required convenience init(coder aDecoder: NSCoder) {
+        let id = aDecoder.decodeObject(forKey: "id") as! Int
+        let tipo = aDecoder.decodeObject(forKey: "tipo") as! String
+        self.init(id: id, tipo: tipo)
+    }
+
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(id, forKey: "id")
+        aCoder.encode(tipo, forKey: "tipo")
+    }
 }

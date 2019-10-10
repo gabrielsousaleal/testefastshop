@@ -39,6 +39,11 @@ class PesquisaViewController: UIViewController {
     override func viewDidLoad() {
            super.viewDidLoad()
         
+        let domain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: domain)
+        UserDefaults.standard.synchronize()
+        print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
+        
         popularBotoes()
         
         esconderTeclado()
@@ -48,6 +53,7 @@ class PesquisaViewController: UIViewController {
         setarDelegates()
         
         selecionarUmFiltro(filtro: "movie", botao: botaoFilme)
+        
            
     }
     
@@ -271,16 +277,14 @@ class PesquisaViewController: UIViewController {
         
     }
     
-    func verificarFavorito(filmeID: String) -> Bool{
+    func verificarFavorito(filmeID: Int) -> Bool{
         
         //FUNCAO PARA VERIFICAR SE UM FILME ESTÁ NA SUA LISTA DE FAVORITOS
         
         let favoritos = DAOFilme().pegarListaFavoritos()
         
-        print(favoritos)
-    
         for favorito in favoritos {
-            if favorito == filmeID {
+            if favorito.id == filmeID {
                return true
             }
         }
@@ -336,7 +340,7 @@ class PesquisaViewController: UIViewController {
 
         let filme = self.listaFilmes[index]
 
-        let id =  String(filme.filmeDecodable?.id ?? 0)
+        let id =  filme.filmeDecodable?.id ?? 0
 
         DAOFilme().removerFavorito(id: id)
 
@@ -345,7 +349,7 @@ class PesquisaViewController: UIViewController {
 
             for (i,filme) in listaFilmes.enumerated() {
 
-                if String(filme.filmeDecodable?.id ?? 0) == id {
+                if filme.filmeDecodable?.id ?? 0 == id {
                     listaFilmes.remove(at: i)
                 }
 
@@ -366,9 +370,11 @@ class PesquisaViewController: UIViewController {
 
         let filme = self.listaFilmes[index]
 
-        let id =  "\(String(describing: filme.filmeDecodable?.id ?? 0))"
+        let id = filme.filmeDecodable?.id ?? 0
+        
+        let favorito = Favorito(id: id, tipo: filme.tipo ?? "semtipo")
 
-        DAOFilme().salvarFilmeFavorito(filme: id)
+        DAOFilme().salvarFilmeFavorito(filme: favorito)
 
         collectionView.reloadData()
         
@@ -435,7 +441,7 @@ extension PesquisaViewController: UICollectionViewDelegate, UICollectionViewData
         cell.favorito.layer.setValue(indexPath.row, forKey: "index")
         
         //VERIFICAR SE O FILME ESTÁ NA SUA LISTA DE FAVORITOS
-        let id = String(filme.filmeDecodable?.id ?? 0)
+        let id = filme.filmeDecodable?.id ?? 0
         
         let favorito = verificarFavorito(filmeID: id)
         
