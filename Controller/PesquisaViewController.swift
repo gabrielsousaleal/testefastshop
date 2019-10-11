@@ -39,11 +39,6 @@ class PesquisaViewController: UIViewController {
     override func viewDidLoad() {
            super.viewDidLoad()
         
-        let domain = Bundle.main.bundleIdentifier!
-        UserDefaults.standard.removePersistentDomain(forName: domain)
-        UserDefaults.standard.synchronize()
-        print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
-        
         popularBotoes()
         
         esconderTeclado()
@@ -55,6 +50,20 @@ class PesquisaViewController: UIViewController {
         selecionarUmFiltro(filtro: "movie", botao: botaoFilme)
         
            
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+
+        //RECARREGAR TELA, SE A TELA FOR A DE FAVORITOS, RECARREGAR OS FILMES NOVAMENTE, POIS PODE TER SIDO ATUALIZADA ( REMOVIDO UM FAVORITO, PELA TELA DE DETALHES)
+
+    
+        if filtro == "favoritos"{
+            recarregarCollectionView()
+        }
+        else {
+            //RECARREGAR APENAS A COLLECTION VIEW, PARA ATUALIZAR A IMAGEM DO BOTAO DE FAVORITO DA CELULA
+            collectionView.reloadData()
+        }
     }
     
     
@@ -342,7 +351,7 @@ class PesquisaViewController: UIViewController {
 
         let id =  filme.filmeDecodable?.id ?? 0
 
-        DAOFilme().removerFavorito(id: id)
+        DAOFilme().desfavoritar(filme: id)
 
         //SE ESTIVER NA ABA DE FAVORITOS, REMOVER O FILME DA LISTA DE PESQUISA TAMBEM
         if filtro == "favoritos" {
@@ -462,15 +471,15 @@ extension PesquisaViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-//        let filme = listaFilmes[indexPath.row]
-//
-//        let storyBoard : UIStoryboard = UIStoryboard(name: "DetalhesStoryBoard", bundle:nil)
-//
-//        let detalhesViewController = storyBoard.instantiateViewController(withIdentifier: "DetalhesViewController") as! DetalhesViewController
-//
-//        detalhesViewController.filmeID = filme.filmeDecodable?.imdbID
-//
-//        navigationController?.pushViewController(detalhesViewController, animated: true)
+        let filme = listaFilmes[indexPath.row]
+
+        let storyBoard : UIStoryboard = UIStoryboard(name: "DetalhesStoryBoard", bundle:nil)
+
+        let detalhesViewController = storyBoard.instantiateViewController(withIdentifier: "DetalhesViewController") as! DetalhesViewController
+
+        detalhesViewController.filme = filme
+
+        navigationController?.pushViewController(detalhesViewController, animated: true)
         
     }
 }

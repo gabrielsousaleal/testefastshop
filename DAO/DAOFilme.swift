@@ -217,9 +217,7 @@ class DAOFilme {
         }
         
         let decodedFilmes = NSKeyedUnarchiver.unarchiveObject(with: decoded!) as? [Favorito] ?? []
-        
-        print(decodedFilmes)
-                
+                        
         return decodedFilmes
         
     }
@@ -227,28 +225,19 @@ class DAOFilme {
     func desfavoritar(filme: Int){
         
         var favoritos = pegarListaFavoritos()
+        
+        print("eaqui")
                 
         for (i,favorito) in favoritos.enumerated() {
             if favorito.id == filme {
+                print("aqui veio")
                 favoritos.remove(at: i)
-                UserDefaults.standard.set(favoritos, forKey: "favoritos")
+                let encodedFilme: Data = NSKeyedArchiver.archivedData(withRootObject: favoritos)
+                UserDefaults.standard.set(encodedFilme, forKey: "favoritos")
             }
         }
         
         
-        
-    }
-    
-    func removerFavorito(id: Int){
-        
-        var listaFavoritos = pegarListaFavoritos()
-        
-        for (i,favorito) in listaFavoritos.enumerated() {
-            if favorito.id == id {
-              listaFavoritos.remove(at: i)
-              UserDefaults.standard.set(listaFavoritos, forKey: "favoritos")
-            }
-        }
         
     }
     

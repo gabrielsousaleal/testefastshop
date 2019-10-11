@@ -14,6 +14,8 @@
 		94E7F6B6234F78AF00E0FE55 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E7F6B5234F78AF00E0FE55 /* SceneDelegate.swift */; };
 		94E7F6B8234FA4C700E0FE55 /* PesquisaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E7F6B7234FA4C700E0FE55 /* PesquisaCell.swift */; };
 		94E7F6BA234FA53D00E0FE55 /* Internet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E7F6B9234FA53C00E0FE55 /* Internet.swift */; };
+		94E7F6BC234FFA8800E0FE55 /* DetalhesStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94E7F6BB234FFA8800E0FE55 /* DetalhesStoryBoard.storyboard */; };
+		94E7F6BE234FFBE700E0FE55 /* DetalhesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E7F6BD234FFBE700E0FE55 /* DetalhesViewController.swift */; };
 		94FCC9BC234E53DF00B3038C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FCC9BB234E53DF00B3038C /* AppDelegate.swift */; };
 		94FCC9C6234E53DF00B3038C /* testefastshop.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 94FCC9C4234E53DF00B3038C /* testefastshop.xcdatamodeld */; };
 		94FCC9C8234E53E100B3038C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94FCC9C7234E53E100B3038C /* Assets.xcassets */; };
@@ -57,6 +59,8 @@
 		94E7F6B5234F78AF00E0FE55 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		94E7F6B7234FA4C700E0FE55 /* PesquisaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PesquisaCell.swift; sourceTree = "<group>"; };
 		94E7F6B9234FA53C00E0FE55 /* Internet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Internet.swift; sourceTree = "<group>"; };
+		94E7F6BB234FFA8800E0FE55 /* DetalhesStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DetalhesStoryBoard.storyboard; sourceTree = "<group>"; };
+		94E7F6BD234FFBE700E0FE55 /* DetalhesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetalhesViewController.swift; sourceTree = "<group>"; };
 		94FCC9B8234E53DF00B3038C /* testefastshop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testefastshop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94FCC9BB234E53DF00B3038C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		94FCC9C5234E53DF00B3038C /* testefastshop.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = testefastshop.xcdatamodel; sourceTree = "<group>"; };
@@ -131,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				94E26CAD234F706E00BB005C /* PesquisaStoryBoard.storyboard */,
+				94E7F6BB234FFA8800E0FE55 /* DetalhesStoryBoard.storyboard */,
 				94E7F6B7234FA4C700E0FE55 /* PesquisaCell.swift */,
 			);
 			path = View;
@@ -140,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				94E26CAF234F712000BB005C /* PesquisaViewController.swift */,
+				94E7F6BD234FFBE700E0FE55 /* DetalhesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -327,6 +333,7 @@
 				94E26CAE234F706E00BB005C /* PesquisaStoryBoard.storyboard in Resources */,
 				94FCC9CB234E53E100B3038C /* LaunchScreen.storyboard in Resources */,
 				94FCC9C8234E53E100B3038C /* Assets.xcassets in Resources */,
+				94E7F6BC234FFA8800E0FE55 /* DetalhesStoryBoard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +466,7 @@
 				94E7F6BA234FA53D00E0FE55 /* Internet.swift in Sources */,
 				94B1B787234EC16100643148 /* Filme.swift in Sources */,
 				94E26CB0234F712000BB005C /* PesquisaViewController.swift in Sources */,
+				94E7F6BE234FFBE700E0FE55 /* DetalhesViewController.swift in Sources */,
 				94FCC9BC234E53DF00B3038C /* AppDelegate.swift in Sources */,
 				94FCC9C6234E53DF00B3038C /* testefastshop.xcdatamodeld in Sources */,
 				94E7F6B6234F78AF00E0FE55 /* SceneDelegate.swift in Sources */,
