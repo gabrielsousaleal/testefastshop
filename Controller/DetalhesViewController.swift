@@ -23,13 +23,12 @@ class DetalhesViewController: UIViewController {
     @IBOutlet var lancamentoLabel: UILabel!
     @IBOutlet var lingueLabel: UILabel!
     @IBOutlet var sinopseLabel: UILabel!
-    @IBOutlet var premiosLabel: UILabel!
+    @IBOutlet var tituloOriginalLabel: UILabel!
     @IBOutlet var roteiristasLabel: UILabel!
     @IBOutlet var atoresLabel: UILabel!
     @IBOutlet var generosLabel: UILabel!
-    @IBOutlet var diretorLabel: UILabel!
-    @IBOutlet var classificacaoLabel: UILabel!
-    @IBOutlet var avaliacoesLabel: UILabel!
+    @IBOutlet var statusLabel: UILabel!
+    @IBOutlet var idiomaOriginalLabel: UILabel!
     @IBOutlet var sobreBotao: UIButton!
     @IBOutlet var informacoesBotao: UIButton!
     @IBOutlet var faixavermelhaSobre: UIView!
@@ -133,30 +132,15 @@ class DetalhesViewController: UIViewController {
         tituloLabel.text = filme.filmeDecodable?.title ?? ""
         paisLabel.text = filme.pais ?? ""
         lingueLabel.text = filme.idiomas ?? ""
-        //premiosLabel.text = filme.filmeDecodable?.Awards
+        rendaFixo.text = filme.renda ?? ""
         generosLabel.text = filme.generos ?? ""
-        lancamentoLabel.text = filme.filmeDecodable?.release_date
-        //diretorLabel.text = filme.filmeDecodable?.Director
+        lancamentoLabel.text = filme.filmeDecodable?.release_date ?? ""
+        tituloOriginalLabel.text = filme.filmeDecodable?.original_title ?? ""
         duracaoLabel.text = "\(filme.filmeDecodable?.runtime ?? 0) min"
-        
-        //TROCANDO AS VÍRGULAS QUE SEPARAM OS ATORES E OS ROTEIRISTAS POR NOVAS LINHAS
-//        let roteiristas = filme.filmeDecodable?.Writer?.replacingOccurrences(of: ",", with: "\n")
-//        roteiristasLabel.text = roteiristas
-//
-//        let atores = filme?.filmeDecodable.Actors?.replacingOccurrences(of: ",", with: "\n")
-//        atoresLabel.text = atores
-//
-
-        //classificacaoLabel.text = filme?.filmeDecodable?.Rated
-        classificacaoLabel.layer.backgroundColor = UIColor.white.cgColor
-        classificacaoLabel.layer.cornerRadius = 6
-        //avaliacoesLabel.text = filme?.ratings
-        //dvdLabel.text = filme?.filmeDecodable?.DVD
-        //boxofficeLabel.text = filme?.filmeDecodable?.BoxOffice
+        idiomaOriginalLabel.text = filme.filmeDecodable?.original_language ?? ""
         prodocaoLabel.text = filme.producao ?? ""
+        statusLabel.text = filme.filmeDecodable?.status ?? ""
         
-       
-
     }
     
     func preencherLabelsGenericas() {
@@ -224,9 +208,9 @@ class DetalhesViewController: UIViewController {
             scrollviewContainer.removeConstraint(constraint)
         }
         
-        let botContainer = NSLayoutConstraint(item: scrollviewContainer!, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: avaliacoesLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 15)
+        let botContainer = NSLayoutConstraint(item: scrollviewContainer!, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: idiomaOriginalLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 15)
         
-         let sobreBot = NSLayoutConstraint(item: sobreView!, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: avaliacoesLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 15)
+         let sobreBot = NSLayoutConstraint(item: sobreView!, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: idiomaOriginalLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 15)
         
         constraints.append(botContainer)
         

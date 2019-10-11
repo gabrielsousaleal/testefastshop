@@ -57,6 +57,9 @@ struct FilmeDecodable: Decodable {
     let spoken_languages: [spoken_languages]?
     let production_companies: [production_companies]?
     let imdb_id: String?
+    let revenue: Int?
+    let status: String?
+    
 }
 
 //MARK: STRUCTS FILME DETALHADO
@@ -101,7 +104,7 @@ class FilmeObjeto {
     var idiomas: String?
     var pais: String?
     var producao: String?
-    
+    var renda: String?
     
     init(filmeDecodable: FilmeDecodable, completion: @escaping (FilmeObjeto) -> () ) {
         
@@ -120,6 +123,10 @@ class FilmeObjeto {
             self.pais = montarLabelPais(filme: filmeDecodable)
             
             self.producao = montarLabelProducao(filme: filmeDecodable)
+            
+            self.renda = montarLabelRenda(filme: filmeDecodable)
+            
+            
             
             self.posterUIImage = imagem
             
@@ -251,6 +258,24 @@ func montarLabelProducao(filme:FilmeDecodable) -> String {
     }
     
     return producao
+    
+}
+
+func montarLabelRenda(filme: FilmeDecodable) -> String {
+    
+    if filme.revenue == nil { return "" }
+    
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .currency
+    var renda = formatter.string(from: filme.revenue! as NSNumber) ?? "N/A"
+    
+    renda.removeFirst()
+    
+    renda = "$ \(renda)"
+    
+    
+    
+    return renda
     
 }
 
