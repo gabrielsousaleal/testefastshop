@@ -24,8 +24,8 @@ class DetalhesViewController: UIViewController {
     @IBOutlet var lingueLabel: UILabel!
     @IBOutlet var sinopseLabel: UILabel!
     @IBOutlet var tituloOriginalLabel: UILabel!
-    @IBOutlet var roteiristasLabel: UILabel!
-    @IBOutlet var atoresLabel: UILabel!
+    @IBOutlet var taglineLabel: UILabel!
+    @IBOutlet var popularidadeLabel: UILabel!
     @IBOutlet var generosLabel: UILabel!
     @IBOutlet var statusLabel: UILabel!
     @IBOutlet var idiomaOriginalLabel: UILabel!
@@ -35,17 +35,23 @@ class DetalhesViewController: UIViewController {
     @IBOutlet var faixavermelhaInformacoes: UIView!
     @IBOutlet var sobreView: UIView!
     @IBOutlet var infoView: UIView!
-    @IBOutlet var dvdFixo: UILabel!
     @IBOutlet var rendaFixo: UILabel!
     @IBOutlet var producaoFixo: UILabel!
     @IBOutlet var botaoSite: UIButton!
     @IBOutlet var scrollviewContainer: UIView!
-    @IBOutlet var dvdLabel: UILabel!
-    @IBOutlet var boxofficeLabel: UILabel!
+    @IBOutlet var custoLabel: UILabel!
     @IBOutlet var prodocaoLabel: UILabel!
     @IBOutlet var imagemNota: UIImageView!
     @IBOutlet var scrollview: UIScrollView!
     @IBOutlet var botaoFavorito: UIButton!
+    
+    //STORYBOARD TITULOS
+    
+    @IBOutlet var tagline: UILabel!
+    @IBOutlet var popularidade: UILabel!
+    @IBOutlet var renda: UILabel!
+    @IBOutlet var custo: UILabel!
+    
     
     //VARIÁVEIS
     
@@ -81,6 +87,8 @@ class DetalhesViewController: UIViewController {
                 
                 if self.filme.tipo == "movie" {
                     self.preencherLabelsFilme()
+                } else {
+                    self.preencherLabelsSerie()
                 }
                 
             }
@@ -129,17 +137,19 @@ class DetalhesViewController: UIViewController {
     
     func preencherLabelsFilme(){
         
-        tituloLabel.text = filme.filmeDecodable?.title ?? ""
-        paisLabel.text = filme.pais ?? ""
-        lingueLabel.text = filme.idiomas ?? ""
-        rendaFixo.text = filme.renda ?? ""
-        generosLabel.text = filme.generos ?? ""
-        lancamentoLabel.text = filme.filmeDecodable?.release_date ?? ""
-        tituloOriginalLabel.text = filme.filmeDecodable?.original_title ?? ""
+        tituloLabel.text = filme.filmeDecodable?.title ?? "N/A"
+        paisLabel.text = filme.pais ?? "N/A"
+        lingueLabel.text = filme.idiomas ?? "N/A"
+        rendaFixo.text = filme.renda ?? "N/A"
+        generosLabel.text = filme.generos ?? "N/A"
+        lancamentoLabel.text = filme.filmeDecodable?.release_date ?? "N/A"
+        tituloOriginalLabel.text = filme.filmeDecodable?.original_title ?? "N/A"
         duracaoLabel.text = "\(filme.filmeDecodable?.runtime ?? 0) min"
-        idiomaOriginalLabel.text = filme.filmeDecodable?.original_language ?? ""
-        prodocaoLabel.text = filme.producao ?? ""
-        statusLabel.text = filme.filmeDecodable?.status ?? ""
+        idiomaOriginalLabel.text = filme.filmeDecodable?.original_language ?? "N/A"
+        statusLabel.text = filme.filmeDecodable?.status ?? "N/A"
+        custoLabel.text = filme.custo ?? "N/A"
+        popularidadeLabel.text = String(filme.filmeDecodable?.popularity ?? 0)
+        taglineLabel.text = filme.filmeDecodable?.tagline ?? "N/A"
         
     }
     
@@ -164,6 +174,34 @@ class DetalhesViewController: UIViewController {
         }
         
         sinopseLabel.text = filme.filmeDecodable?.overview ?? ""
+        
+        prodocaoLabel.text = filme.producao ?? "N/A"
+        
+    }
+    
+    func preencherLabelsSerie(){
+        
+        tituloLabel.text = filme.filmeDecodable?.name ?? "N/A"
+        lancamentoLabel.text = filme.filmeDecodable?.first_air_date ?? "N/A"
+        duracaoLabel.text = "\(filme.filmeDecodable?.episode_run_time?.first ?? 0) min"
+        
+        popularidade.text = "Criadores"
+        popularidadeLabel.text = filme.criadores ?? "N/A"
+        lingueLabel.text = filme.idiomasSerie ?? "N/A"
+        paisLabel.text = filme.filmeDecodable?.origin_country?.first ?? "N/A"
+        tituloOriginalLabel.text = filme.filmeDecodable?.original_name ?? "N/A"
+        idiomaOriginalLabel.text = filme.filmeDecodable?.original_language ?? "N/A"
+        generosLabel.text = filme.generos
+        statusLabel.text = filme.statusSerie ?? "N/A"
+        
+        tagline.text = "Episodios"
+        taglineLabel.text = "\(filme.filmeDecodable?.number_of_episodes ?? 0)"
+        
+        custo.text = "Temporadas"
+        custoLabel.text = "\(filme.filmeDecodable?.number_of_seasons ?? 0)"
+        
+        renda.text = "Última estréia"
+        rendaFixo.text = filme.filmeDecodable?.last_air_date ?? "N/A"
         
     }
     

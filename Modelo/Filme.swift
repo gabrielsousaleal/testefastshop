@@ -47,6 +47,12 @@ struct FilmeDecodable: Decodable {
     //SERIE
     let name: String?
     let first_air_date: String?
+    let created_by: [created_by]?
+    let episode_run_time: [Int]?
+    let in_production: Bool?
+    let languages: [String]?
+    let number_of_episodes: Int?
+    let production_companies: [production_companies]?
     
     //FILME DETALHADO
     let budget: Float?
@@ -55,12 +61,29 @@ struct FilmeDecodable: Decodable {
     let production_countries: [production_countries]?
     let runtime: Int?
     let spoken_languages: [spoken_languages]?
-    let production_companies: [production_companies]?
     let imdb_id: String?
     let revenue: Int?
     let status: String?
+    let tagline: String?
+    let origin_country: [String]?
+    let original_name: String?
+    let number_of_seasons: Int?
+    let last_air_date: String?
     
 }
+
+//MARK: STRUCTS SERIE DETALHADA
+
+struct created_by: Decodable {
+    
+    let id: Int?
+    let credit_id: String?
+    let name: String?
+    let gender: Int?
+    let profile_path: String?
+    
+}
+
 
 //MARK: STRUCTS FILME DETALHADO
 
@@ -93,6 +116,8 @@ struct spoken_languages: Decodable {
     
 }
 
+//MARK: OBJETO
+
 class FilmeObjeto {
     
     let filmeDecodable: FilmeDecodable?
@@ -100,11 +125,20 @@ class FilmeObjeto {
     var posterUIImage: UIImage?
     var estrela: UIImage?
     var tipo: String?
+    
+    //FILME
     var generos: String?
     var idiomas: String?
     var pais: String?
     var producao: String?
     var renda: String?
+    var custo: String?
+    
+    //SERIE
+    var criadores: String?
+    var idiomasSerie: String?
+    var statusSerie: String?
+    
     
     init(filmeDecodable: FilmeDecodable, completion: @escaping (FilmeObjeto) -> () ) {
         
@@ -116,17 +150,29 @@ class FilmeObjeto {
             
             self.tipo = verificarTipo(filme: filmeDecodable)
             
+            if self.tipo == "movie" {
+                                
+                self.idiomas = montarLabelIdiomas(filme: filmeDecodable)
+                
+                self.pais = montarLabelPais(filme: filmeDecodable)
+                
+                self.renda = montarLabelRenda(filme: filmeDecodable)
+                
+                self.custo = montarLabelCusto(filme: filmeDecodable)
+                
+            } else {
+                
+                self.criadores = montarLabelCriadoPor(filme: filmeDecodable)
+                
+                self.idiomasSerie = montarLabelIdiomasSerie(filme: filmeDecodable)
+                
+                self.statusSerie = montarLabelStatusSerie(filme: filmeDecodable)
+                
+            }
+            
             self.generos = montarLabelGeneros(filme: filmeDecodable)
             
-            self.idiomas = montarLabelIdiomas(filme: filmeDecodable)
-            
-            self.pais = montarLabelPais(filme: filmeDecodable)
-            
             self.producao = montarLabelProducao(filme: filmeDecodable)
-            
-            self.renda = montarLabelRenda(filme: filmeDecodable)
-            
-            
             
             self.posterUIImage = imagem
             
@@ -193,6 +239,8 @@ func verificarEstrelas(nota: Float) -> UIImage{
     
     
 }
+
+//MARK: MONTAR LABELS FILME
 
 func montarLabelGeneros(filme: FilmeDecodable) -> String {
     
@@ -279,7 +327,74 @@ func montarLabelRenda(filme: FilmeDecodable) -> String {
     
 }
 
+func montarLabelCusto(filme: FilmeDecodable) -> String {
+    
+    if filme.budget == nil { return "" }
+    
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .currency
+    var custo = formatter.string(from: filme.budget! as NSNumber) ?? "N/A"
+    
+    custo.removeFirst()
+    
+    custo = "$ \(custo)"
+    
+    
+    
+    return custo
+    
+}
 
+//MARK: MONTAR LABELS SERIE
+
+func montarLabelCriadoPor(filme: FilmeDecodable) -> String {
+    
+    if filme.created_by?.count == 0 { return "N/A" }
+    
+    var criadores = ""
+    
+    for criador in filme.created_by ?? [] {
+        
+        criadores += "\(criador.name ?? "")\n"
+        
+    }
+    
+    return criadores
+    
+}
+
+func montarLabelIdiomasSerie(filme: FilmeDecodable) -> String {
+    
+    if filme.languages?.count == 0 { return "N/A" }
+    
+    var idiomas = ""
+    
+    for idioma in filme.languages ?? [] {
+        
+        idiomas += "\(idioma)\n"
+        
+    }
+    
+    return idiomas
+    
+}
+
+func montarLabelStatusSerie(filme: FilmeDecodable) -> String {
+    
+    if filme.in_production == nil { return "N/A" }
+    
+    var status = ""
+    
+    status = filme.in_production! ? "Em produção" : "Finalizado"
+    
+    return status
+    
+}
+
+
+
+
+//MARK: FAVORITO
 
 class Favorito: NSObject, NSCoding {
     

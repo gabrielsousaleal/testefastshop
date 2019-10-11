@@ -22,10 +22,10 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detalhesMoldura" translatesAutoresizingMaskIntoConstraints="NO" id="mxq-hP-Bic">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="392.00000000000011"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="392"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zNE-bF-0Hd">
-                                <rect key="frame" x="16" y="16" width="16" height="30.5"/>
+                                <rect key="frame" x="16" y="16" width="32" height="61"/>
                                 <state key="normal" image="002Back"/>
                                 <connections>
                                     <action selector="botaoVoltar:" destination="kow-bK-fZy" eventType="touchUpInside" id="c66-VH-B7x"/>
@@ -224,7 +224,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="da8-Kx-PNL" userLabel="infoview">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Wx-vo-Wki">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Wx-vo-Wki">
                                                         <rect key="frame" x="15.5" y="15" width="344" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="344" id="nHJ-Im-KwU"/>
@@ -233,7 +233,7 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="diretor texto" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37N-ff-UZU">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" text="diretor texto" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37N-ff-UZU">
                                                         <rect key="frame" x="15" y="41.5" width="344" height="17"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="344" id="un6-kN-u09"/>
@@ -242,7 +242,7 @@
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Produção" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="noG-hB-AYp">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Produção" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="noG-hB-AYp">
                                                         <rect key="frame" x="15" y="222.5" width="344" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="344" id="Inx-yj-pD5"/>
@@ -251,7 +251,7 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="producao texto" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uji-wS-uUO">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="750" text="producao texto" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uji-wS-uUO">
                                                         <rect key="frame" x="15" y="250.5" width="344" height="17"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="344" id="73m-aH-MbM"/>
@@ -260,7 +260,7 @@
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Atores" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZ5-jk-jXT">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Popularidade" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZ5-jk-jXT">
                                                         <rect key="frame" x="15" y="118.5" width="344" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="344" id="cj9-4h-Z2a"/>
@@ -269,7 +269,7 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="atores texto" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="42s-nF-cwJ">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="popularidade texto" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="42s-nF-cwJ">
                                                         <rect key="frame" x="15" y="140.5" width="344" height="17"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="344" id="byG-ca-ndD"/>
@@ -278,7 +278,7 @@
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DVD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pbb-t2-WkA">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Custo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pbb-t2-WkA">
                                                         <rect key="frame" x="15" y="169.5" width="173" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="173" id="ODg-f9-kR9"/>
@@ -287,7 +287,7 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="dvd texto" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Olq-eG-qbt">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="750" text="custo texto" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Olq-eG-qbt">
                                                         <rect key="frame" x="15" y="193.5" width="173" height="17"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="173" id="BhA-fF-g3D"/>
@@ -296,7 +296,7 @@
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Renda" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGG-bR-zzS">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Renda" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGG-bR-zzS">
                                                         <rect key="frame" x="185" y="169.5" width="182" height="19.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="182" id="8pu-OD-JCa"/>
@@ -305,7 +305,7 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="renda texto" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X4J-4L-g9X">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="750" text="renda texto" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X4J-4L-g9X">
                                                         <rect key="frame" x="185" y="193.5" width="174" height="17"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="174" id="kEB-PE-QJI"/>
@@ -314,7 +314,7 @@
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Roteiristas" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8VE-tB-GSA">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Tagline" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8VE-tB-GSA">
                                                         <rect key="frame" x="15" y="66.5" width="344" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="344" id="Un3-Ku-eYx"/>
@@ -323,13 +323,13 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="roteiristas texto" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhw-O6-fkQ">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" text="tagline texto" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhw-O6-fkQ">
                                                         <rect key="frame" x="15" y="89.5" width="344" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTW-WL-7ez">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTW-WL-7ez">
                                                         <rect key="frame" x="15.5" y="300.5" width="344" height="40"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -463,6 +463,8 @@
                     <connections>
                         <outlet property="botaoFavorito" destination="O6A-LK-Zb4" id="b80-eJ-ItO"/>
                         <outlet property="botaoSite" destination="GTW-WL-7ez" id="a2o-u5-cXD"/>
+                        <outlet property="custo" destination="Pbb-t2-WkA" id="P4m-gb-8hr"/>
+                        <outlet property="custoLabel" destination="Olq-eG-qbt" id="d41-ah-4nK"/>
                         <outlet property="duracaoLabel" destination="uAb-7g-X3v" id="sVE-Wi-yoD"/>
                         <outlet property="faixavermelhaInformacoes" destination="7iw-lh-Kiw" id="pR2-mf-2th"/>
                         <outlet property="faixavermelhaSobre" destination="1Sb-4b-G4D" id="2Op-MJ-Y96"/>
@@ -475,16 +477,21 @@
                         <outlet property="lingueLabel" destination="eR2-dq-jWg" id="6F4-8I-DEA"/>
                         <outlet property="notaIMDBLabel" destination="pxY-qo-dGc" id="2dv-Iy-aEc"/>
                         <outlet property="paisLabel" destination="4Aj-sY-RzO" id="gAN-4T-B20"/>
+                        <outlet property="popularidade" destination="JZ5-jk-jXT" id="hOB-lX-StN"/>
+                        <outlet property="popularidadeLabel" destination="42s-nF-cwJ" id="Wq6-1j-hXi"/>
                         <outlet property="posterView" destination="dwu-54-TDp" id="wld-aQ-yGd"/>
                         <outlet property="prodocaoLabel" destination="Uji-wS-uUO" id="JRK-sr-4NL"/>
                         <outlet property="producaoFixo" destination="Uji-wS-uUO" id="9Jz-Io-h0D"/>
+                        <outlet property="renda" destination="RGG-bR-zzS" id="wi6-EU-yPo"/>
                         <outlet property="rendaFixo" destination="X4J-4L-g9X" id="mbD-60-fo7"/>
                         <outlet property="scrollview" destination="oNh-XZ-p6q" id="3Um-ja-U0X"/>
                         <outlet property="scrollviewContainer" destination="8aY-sf-0Y5" id="WBr-i9-GEw"/>
                         <outlet property="sinopseLabel" destination="Dwl-sh-zSy" id="FgJ-0c-fDM"/>
                         <outlet property="sobreBotao" destination="gWu-fj-Ctd" id="YoG-rr-Qdf"/>
                         <outlet property="sobreView" destination="1ev-Je-zsB" id="lPk-ib-bFr"/>
-                        <outlet property="statusLabel" destination="37N-ff-UZU" id="PCx-UQ-ZVx"/>
+                        <outlet property="statusLabel" destination="37N-ff-UZU" id="K8h-nv-Els"/>
+                        <outlet property="tagline" destination="8VE-tB-GSA" id="IfW-Pp-5eH"/>
+                        <outlet property="taglineLabel" destination="jhw-O6-fkQ" id="Eu3-M7-gBC"/>
                         <outlet property="tituloLabel" destination="6hm-6i-X3C" id="qPR-JA-fno"/>
                         <outlet property="tituloOriginalLabel" destination="tP7-tN-ptp" id="nrQ-3J-7Eq"/>
                     </connections>
