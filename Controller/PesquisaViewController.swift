@@ -24,6 +24,7 @@ class PesquisaViewController: UIViewController {
     @IBOutlet var faixavermelhaFavoritos: UIView!
     
     //VARIÁVEIS
+    var pagina = 1
     var filtro = ""
     var botoes: [UIButton] = []
     var faixas: [UIView] = []
@@ -70,77 +71,110 @@ class PesquisaViewController: UIViewController {
     
     //MARK: FUNÇÃO COLLECTION VIEW
        
-       @objc func recarregarFavoritos(){
+    @objc func recarregarFavoritos(){
 
-           DAOFilme().pegarFavoritos { listaFavoritos in
+        DAOFilme().pegarFavoritos { listaFavoritos in
 
-               DispatchQueue.main.async {
-                   // REMOVER A LISTA DE FILMES ANTERIOR
-                   self.listaFilmes.removeAll()
+            DispatchQueue.main.async {
+                // REMOVER A LISTA DE FILMES ANTERIOR
+                self.listaFilmes.removeAll()
 
-                   //SE NAO TIVER NADA DIGITADO NA SEARCHBAR, MOSTRAR TODOS OS SEUS FAVORITOS COMO PADRÃO
-                   if self.textoPesquisado.count == 0 {
-                       self.listaFilmes = listaFavoritos
-                       self.collectionView.reloadData()
-                       return
-                   }
+                //SE NAO TIVER NADA DIGITADO NA SEARCHBAR, MOSTRAR TODOS OS SEUS FAVORITOS COMO PADRÃO
+                if self.textoPesquisado.count == 0 {
+                    self.listaFilmes = listaFavoritos
+                    self.collectionView.reloadData()
+                    return
+                }
 
-                   var listaPesquisa: [FilmeObjeto] = []
+                var listaPesquisa: [FilmeObjeto] = []
 
-                   //FOR PARA VERIFICAR SE EXISTE UM FILME NOS FAVORITOS COM O TITULO DIGITADO NA SEARCHBAR
-                   for filme in listaFavoritos {
+                //FOR PARA VERIFICAR SE EXISTE UM FILME NOS FAVORITOS COM O TITULO DIGITADO NA SEARCHBAR
+                for filme in listaFavoritos {
 
-                       let titulo = filme.filmeDecodable?.title ?? ""
+                    let titulo = filme.filmeDecodable?.title ?? ""
 
-                       let textoPesquisadoFavorito = self.textoPesquisado.replacingOccurrences(of: "+", with: " ")
+                    let textoPesquisadoFavorito = self.textoPesquisado.replacingOccurrences(of: "+", with: " ")
 
-                       if (titulo.lowercased().contains(textoPesquisadoFavorito.lowercased())){
-                           listaPesquisa.append(filme)
-                       }
+                    if (titulo.lowercased().contains(textoPesquisadoFavorito.lowercased())){
+                        listaPesquisa.append(filme)
+                    }
 
-                   }
+                }
 
-                   self.listaFilmes = listaPesquisa
+                self.listaFilmes = listaPesquisa
 
-                   self.collectionView.reloadData()
+                self.collectionView.reloadData()
 
-               }
-           }
+            }
+        }
 
-       }
+    }
 
-       @objc func recarregarCollectionView(){
-           
-           //SE ESTIVER NO FILTRO DE FAVORITOS, FAZER OUTRO TIPO DE PESQUISA
+    @objc func recarregarCollectionView(){
+        
+        pagina = 1
+        
+        //SE ESTIVER NO FILTRO DE FAVORITOS, FAZER OUTRO TIPO DE PESQUISA
 
-           if filtro == "favoritos" {
-               
-               recarregarFavoritos()
-               
-           } else {
-               
-           // SE NAO ATINGIR O MÍNIMO DE CARACTERES PARA PESQUISA, NÃO MOSTRAR RESULTADOS
-           if textoPesquisado.count < minimoDeCaracteres && filtro != "favoritos"{
-               listaFilmes.removeAll()
-               collectionView.reloadData()
-               return
-           }
-           
-           //FUNCAO PARA BAIXAR OS FILMES, PASSANDO NOME E FILTRO (TYPE)
-           DAOFilme().buscarFilmePorNome(nome: textoPesquisado, pagina: 1, filtro: filtro){ filmes in
-               
-               DispatchQueue.main.async {
+        if filtro == "favoritos" {
+            
+            recarregarFavoritos()
+            
+        } else {
+            
+        // SE NAO ATINGIR O MÍNIMO DE CARACTERES PARA PESQUISA, NÃO MOSTRAR RESULTADOS
+        if textoPesquisado.count < minimoDeCaracteres && filtro != "favoritos"{
+            listaFilmes.removeAll()
+            collectionView.reloadData()
+            return
+        }
+        
+        //FUNCAO PARA BAIXAR OS FILMES, PASSANDO NOME E FILTRO (TYPE)
+        DAOFilme().buscarFilmePorNome(nome: textoPesquisado, pagina: 1, filtro: filtro){ filmes in
+            
+            DispatchQueue.main.async {
+            
+                self.listaFilmes.removeAll()
+                self.listaFilmes = filmes
+                self.collectionView.reloadData()
+            
+            }
+            
+        }
+        
+        }
+    }
+       
+    @objc func puxarProximaPagina(){
+        
+        pagina += 1
+        
+        //FILTRO FAVORITOS NAO TEM PAGINAÇAO
+
+        if filtro == "favoritos" {
+            
+            return
+            
+        } else {
+        
+        //FUNCAO PARA BAIXAR OS FILMES, PASSANDO NOME E FILTRO (TYPE)
+        DAOFilme().buscarFilmePorNome(nome: textoPesquisado, pagina: pagina, filtro: filtro){ filmes in
+            
+            DispatchQueue.main.async {
                 
-                   self.listaFilmes.removeAll()
-                   self.listaFilmes = filmes
-                   self.collectionView.reloadData()
+                for filme in filmes {
+                    self.listaFilmes.append(filme)
+                }
                 
-               }
-               
-           }
-           
-           }
-       }
+                self.collectionView.reloadData()
+            
+            }
+            
+        }
+        
+        }
+        
+    }
     
     
     
@@ -480,6 +514,15 @@ extension PesquisaViewController: UICollectionViewDelegate, UICollectionViewData
         navigationController?.pushViewController(detalhesViewController, animated: true)
         
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        if indexPath.row == listaFilmes.count - 1 {
+            puxarProximaPagina()
+        }
+   
+       }
+    
 }
 
 //MARK: ESCONDER TECLADO

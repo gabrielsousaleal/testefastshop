@@ -295,7 +295,7 @@ func montarLabelPais(filme: FilmeDecodable) -> String {
 
 func montarLabelProducao(filme:FilmeDecodable) -> String {
     
-    if filme.production_companies?.count == 0 { return "" }
+    if filme.production_companies?.count == 0 { return "N/A" }
     
     var producao = ""
     
@@ -304,7 +304,7 @@ func montarLabelProducao(filme:FilmeDecodable) -> String {
         producao += "\(produtora.name ?? "")\n"
         
     }
-    
+        
     return producao
     
 }

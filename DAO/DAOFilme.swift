@@ -38,6 +38,8 @@ class DAOFilme {
                     let json = try JSONDecoder().decode(Lista.self, from: data)
                     
                     let informacoesPesquisa = try JSONDecoder().decode(InformacoesPesquisa.self, from: data)
+                    
+                    print(informacoesPesquisa.total_pages)
                         
                     let semaforo = DispatchSemaphore(value: 1)
                     
