@@ -74,8 +74,19 @@ class DetalhesViewController: UIViewController {
         //INICIAR COM A ABA DE SOBRE DA SCROLL VIEW ACIONADA POR PADRÃO
         acionarBotaoSobre(sobreBotao)
         
-        preencherLabels()
-        
+        DAOFilme().pegarFilmeDetalhado(id: filme.filmeDecodable?.id ?? 0, tipo: filme.tipo ?? "") { filme in
+            DispatchQueue.main.async {
+                self.filme = filme.first
+                
+                self.preencherLabelsGenericas()
+                
+                if self.filme.tipo == "movie" {
+                    self.preencherLabelsFilme()
+                }
+                
+            }
+        }
+                
     }
     
     
@@ -117,35 +128,16 @@ class DetalhesViewController: UIViewController {
         }
     }
     
-    func preencherLabels(){
-        
-        DAOFilme().baixarPoster(path: filme?.filmeDecodable?.poster_path ?? "", tamanho: 600) { poster in
-            
-            DispatchQueue.main.async {
-                self.posterView.image = poster
-            }
-            
-        }
-        
-        //ESCONDER OS CAMPOS EXCLUSIVOS DE UM FILME (movie), CASO NÃO SEJA UM
-        if filme.tipo != "movie" {
-            
-            botaoSite.isHidden = true
-            dvdFixo.isHidden = true
-            producaoFixo.isHidden = true
-            rendaFixo.isHidden = true
-            
-        }
+    func preencherLabelsFilme(){
         
         tituloLabel.text = filme.filmeDecodable?.title ?? ""
-        //paisLabel.text = filme.filmeDecodable?.production_countries
-        //lingueLabel.text = filme.filmeDecodable?.spoken_languages[0]
+        paisLabel.text = filme.pais ?? ""
+        lingueLabel.text = filme.idiomas ?? ""
         //premiosLabel.text = filme.filmeDecodable?.Awards
-        sinopseLabel.text = filme.filmeDecodable?.overview ?? ""
-        //generosLabel.text = filme.filmeDecodable?.genres[0].name
+        generosLabel.text = filme.generos ?? ""
         lancamentoLabel.text = filme.filmeDecodable?.release_date
         //diretorLabel.text = filme.filmeDecodable?.Director
-        duracaoLabel.text = "\(filme.filmeDecodable?.run_time ?? 0) min"
+        duracaoLabel.text = "\(filme.filmeDecodable?.runtime ?? 0) min"
         
         //TROCANDO AS VÍRGULAS QUE SEPARAM OS ATORES E OS ROTEIRISTAS POR NOVAS LINHAS
 //        let roteiristas = filme.filmeDecodable?.Writer?.replacingOccurrences(of: ",", with: "\n")
@@ -154,25 +146,41 @@ class DetalhesViewController: UIViewController {
 //        let atores = filme?.filmeDecodable.Actors?.replacingOccurrences(of: ",", with: "\n")
 //        atoresLabel.text = atores
 //
-        //COLOCANDO UM /10 DEPOIS DA NOTA IMDB, CASO ELA NÃO SEJA N/A
-//        if filme?.imdbRating != "N/A"{
-//            notaIMDBLabel.text = "\(filme?.imdbRating ?? "")/10"
-//        } else {
-//            notaIMDBLabel.text = filme?.imdbRating
-//        }
-//
+
         //classificacaoLabel.text = filme?.filmeDecodable?.Rated
         classificacaoLabel.layer.backgroundColor = UIColor.white.cgColor
         classificacaoLabel.layer.cornerRadius = 6
         //avaliacoesLabel.text = filme?.ratings
         //dvdLabel.text = filme?.filmeDecodable?.DVD
         //boxofficeLabel.text = filme?.filmeDecodable?.BoxOffice
-        //prodocaoLabel.text = filme?.filmeDecodable?.Production
+        prodocaoLabel.text = filme.producao ?? ""
         
-        //let imagem = verificarEstrelas(nota: filme?.imdbRating ?? "")
-        
-        //imagemNota.image = imagem
+       
 
+    }
+    
+    func preencherLabelsGenericas() {
+        
+        DAOFilme().baixarPoster(path: filme?.filmeDecodable?.poster_path ?? "", tamanho: 600) { poster in
+                   
+                   DispatchQueue.main.async {
+                       self.posterView.image = poster
+                   }
+                   
+               }
+        
+        let imagem = filme.estrela
+               
+        imagemNota.image = imagem
+        
+        if filme.filmeDecodable?.vote_average != nil {
+            notaIMDBLabel.text = "\(filme.filmeDecodable?.vote_average ?? 0)/10"
+        } else {
+            notaIMDBLabel.text = "filme sem nota"
+        }
+        
+        sinopseLabel.text = filme.filmeDecodable?.overview ?? ""
+        
     }
     
     func verificarFavorito(){
@@ -252,7 +260,7 @@ class DetalhesViewController: UIViewController {
     @IBAction func irParaOSite(_ sender: Any) {
         
         //SE NAO HOUVER SITE, MOSTRAR UM ALERT COMO FEEDBACK
-        if filme?.filmeDecodable?.homepage == "N/A" {
+        if filme?.filmeDecodable?.homepage == nil{
             
             let alert = UIAlertController(title: "Ops!", message: "Esse filme não tem um site", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
@@ -297,4 +305,11 @@ class DetalhesViewController: UIViewController {
     
     
     
+}
+
+
+extension DetalhesViewController {
+     override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }

@@ -81,8 +81,12 @@ class DAOFilme {
     
     func baixarPoster(path: String, tamanho: Int = 300, completion: @escaping(UIImage) -> () ){
         
-       let url = "http://image.tmdb.org/t/p/w\(tamanho)\(path)"
+        var tamanho = tamanho
         
+        if tamanho > 500 { tamanho = 500 }
+        
+        let url = "http://image.tmdb.org/t/p/w\(tamanho)\(path)"
+                
        Alamofire.request(url).responseImage { (response) in
            if let result = response.result.value {
                completion(result)
@@ -118,7 +122,7 @@ class DAOFilme {
                     let json = try JSONDecoder().decode(FilmeDecodable.self, from: data)
                                                     
                     _ = FilmeObjeto(filmeDecodable: json) { result in
-                                
+                                                        
                         listaFilmesObj.append(result)
                                 
                         completion(listaFilmesObj)
@@ -225,12 +229,9 @@ class DAOFilme {
     func desfavoritar(filme: Int){
         
         var favoritos = pegarListaFavoritos()
-        
-        print("eaqui")
-                
+                        
         for (i,favorito) in favoritos.enumerated() {
             if favorito.id == filme {
-                print("aqui veio")
                 favoritos.remove(at: i)
                 let encodedFilme: Data = NSKeyedArchiver.archivedData(withRootObject: favoritos)
                 UserDefaults.standard.set(encodedFilme, forKey: "favoritos")

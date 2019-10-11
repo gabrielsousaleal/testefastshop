@@ -22,10 +22,10 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detalhesMoldura" translatesAutoresizingMaskIntoConstraints="NO" id="mxq-hP-Bic">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="392"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="392.00000000000011"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zNE-bF-0Hd">
-                                <rect key="frame" x="16" y="16" width="32" height="61"/>
+                                <rect key="frame" x="16" y="16" width="16" height="30.5"/>
                                 <state key="normal" image="002Back"/>
                                 <connections>
                                     <action selector="botaoVoltar:" destination="kow-bK-fZy" eventType="touchUpInside" id="c66-VH-B7x"/>
@@ -484,7 +484,11 @@
                         <outlet property="informacoesBotao" destination="UGd-wJ-mop" id="8eV-D4-Hbw"/>
                         <outlet property="lancamentoLabel" destination="taD-Be-NhL" id="hOB-h0-euW"/>
                         <outlet property="lingueLabel" destination="eR2-dq-jWg" id="6F4-8I-DEA"/>
+                        <outlet property="notaIMDBLabel" destination="pxY-qo-dGc" id="2dv-Iy-aEc"/>
+                        <outlet property="paisLabel" destination="4Aj-sY-RzO" id="gAN-4T-B20"/>
                         <outlet property="posterView" destination="dwu-54-TDp" id="wld-aQ-yGd"/>
+                        <outlet property="prodocaoLabel" destination="Uji-wS-uUO" id="Bjm-7X-gmM"/>
+                        <outlet property="rendaFixo" destination="X4J-4L-g9X" id="mbD-60-fo7"/>
                         <outlet property="scrollview" destination="oNh-XZ-p6q" id="3Um-ja-U0X"/>
                         <outlet property="scrollviewContainer" destination="8aY-sf-0Y5" id="WBr-i9-GEw"/>
                         <outlet property="sinopseLabel" destination="Dwl-sh-zSy" id="FgJ-0c-fDM"/>

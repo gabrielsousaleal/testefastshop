@@ -395,8 +395,6 @@ class PesquisaViewController: UIViewController {
         searchBar.delegate = self
     }
     
-    
-    
 }
 
 //MARK: COLLECTIONVIEW DELEGATE

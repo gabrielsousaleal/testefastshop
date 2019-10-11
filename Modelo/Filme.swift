@@ -53,12 +53,22 @@ struct FilmeDecodable: Decodable {
     let genres: [genres]?
     let homepage: String?
     let production_countries: [production_countries]?
-    let run_time: Int?
+    let runtime: Int?
     let spoken_languages: [spoken_languages]?
+    let production_companies: [production_companies]?
     let imdb_id: String?
 }
 
 //MARK: STRUCTS FILME DETALHADO
+
+struct production_companies: Decodable {
+    
+    let id: Int?
+    let logo_path: String?
+    let name: String?
+    let origin_country: String?
+}
+
 struct genres: Decodable {
     
     let id: Int?
@@ -87,6 +97,10 @@ class FilmeObjeto {
     var posterUIImage: UIImage?
     var estrela: UIImage?
     var tipo: String?
+    var generos: String?
+    var idiomas: String?
+    var pais: String?
+    var producao: String?
     
     
     init(filmeDecodable: FilmeDecodable, completion: @escaping (FilmeObjeto) -> () ) {
@@ -99,7 +113,16 @@ class FilmeObjeto {
             
             self.tipo = verificarTipo(filme: filmeDecodable)
             
+            self.generos = montarLabelGeneros(filme: filmeDecodable)
+            
+            self.idiomas = montarLabelIdiomas(filme: filmeDecodable)
+            
+            self.pais = montarLabelPais(filme: filmeDecodable)
+            
+            self.producao = montarLabelProducao(filme: filmeDecodable)
+            
             self.posterUIImage = imagem
+            
             completion(self)
             
         }
@@ -109,7 +132,7 @@ class FilmeObjeto {
 }
 
 
-//FUNCOES
+//MARK: FUNCOES OBJ
 
 func verificarTipo(filme: FilmeDecodable) -> String {
     
@@ -161,6 +184,73 @@ func verificarEstrelas(nota: Float) -> UIImage{
     
     return UIImage(named: nomeImagem) ?? UIImage()
     
+    
+}
+
+func montarLabelGeneros(filme: FilmeDecodable) -> String {
+    
+    if (filme.genres ?? []).count == 0 { return "" }
+    
+    var generos = ""
+    
+    for genero in filme.genres ?? [] {
+    
+       generos += "\(genero.name!), "
+        
+    }
+    
+    //REMOVER O ULTIMO ESPACO E VIRGULA
+    generos.removeLast()
+    generos.removeLast()
+    
+    return generos
+}
+
+func montarLabelIdiomas(filme: FilmeDecodable) -> String {
+    
+    if filme.spoken_languages?.count == 0 { return "" }
+    
+    var idiomas = ""
+    
+    for idioma in filme.spoken_languages ?? [] {
+        
+        idiomas += "\(idioma.name ?? "")\n"
+        
+    }
+    
+    return idiomas
+    
+}
+
+func montarLabelPais(filme: FilmeDecodable) -> String {
+    
+    if filme.production_countries?.count == 0 { return "" }
+    
+    var paises = ""
+    
+    for pais in filme.production_countries ?? [] {
+        
+        paises += "\(pais.name ?? "")\n"
+        
+    }
+    
+    return paises
+
+}
+
+func montarLabelProducao(filme:FilmeDecodable) -> String {
+    
+    if filme.production_companies?.count == 0 { return "" }
+    
+    var producao = ""
+    
+    for produtora in filme.production_companies ?? [] {
+        
+        producao += "\(produtora.name ?? "")\n"
+        
+    }
+    
+    return producao
     
 }
 
