@@ -147,6 +147,7 @@ class PesquisaViewController: UIViewController {
        
     @objc func puxarProximaPagina(){
         
+        //IR PARA PROXIMA PAGINA
         pagina += 1
         
         //FILTRO FAVORITOS NAO TEM PAGINAÇAO
@@ -517,12 +518,13 @@ extension PesquisaViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
+        //SE O ULTIMO FILME DA LISTA FOR MOSTRADO, CHAMAR A PROXIMA PAGINA
+        
         if indexPath.row == listaFilmes.count - 1 {
             puxarProximaPagina()
         }
    
        }
-    
 }
 
 //MARK: ESCONDER TECLADO
@@ -550,7 +552,7 @@ extension PesquisaViewController: UISearchBarDelegate {
         
         let textoDigitado = searchBar.text ?? " "
         
-        //A API REGISTRA OS ESPAÇOS COM _ ENTÃO OS ESPAÇOS DIGITADOS DEVEM SER SUBSTITUIDOS
+        //A API REGISTRA OS ESPAÇOS COM + ENTÃO OS ESPAÇOS DIGITADOS DEVEM SER SUBSTITUIDOS
         textoPesquisado = textoDigitado.replacingOccurrences(of: " ", with: "+")
         
         //SE NÃO HOUVER TEXTO DIGITADO, ESCONDER O BOTAO LIMPAR

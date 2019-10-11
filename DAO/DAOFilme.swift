@@ -85,6 +85,7 @@ class DAOFilme {
         
         var tamanho = tamanho
         
+        //O TAMANHO MAXIMO É 500
         if tamanho > 500 { tamanho = 500 }
         
         let url = "http://image.tmdb.org/t/p/w\(tamanho)\(path)"
@@ -207,11 +208,16 @@ class DAOFilme {
         
         favoritos.append(filme)
         
-        let encodedFilme: Data = NSKeyedArchiver.archivedData(withRootObject: favoritos)
-    
-        UserDefaults.standard.set(encodedFilme, forKey: "favoritos")
-        
-        
+        do {
+            
+            let encodedFilme: Data = try NSKeyedArchiver.archivedData(withRootObject: favoritos,  requiringSecureCoding: false)
+            
+            UserDefaults.standard.set(encodedFilme, forKey: "favoritos")
+            
+        } catch {
+            print("erro ao salvar filme favorito")
+        }
+            
     }
     
     func pegarListaFavoritos() -> [Favorito]{
@@ -235,8 +241,17 @@ class DAOFilme {
         for (i,favorito) in favoritos.enumerated() {
             if favorito.id == filme {
                 favoritos.remove(at: i)
-                let encodedFilme: Data = NSKeyedArchiver.archivedData(withRootObject: favoritos)
-                UserDefaults.standard.set(encodedFilme, forKey: "favoritos")
+                
+                do {
+                    
+                    let encodedFilme: Data = try NSKeyedArchiver.archivedData(withRootObject: favoritos,  requiringSecureCoding: false)
+                    
+                    UserDefaults.standard.set(encodedFilme, forKey: "favoritos")
+                    
+                } catch {
+                    print("erro ao salvar filme favorito")
+                }
+                
             }
         }
         
