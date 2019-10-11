@@ -48,16 +48,14 @@ class PesquisaViewController: UIViewController {
         
         setarDelegates()
         
+        //INICIAR COM O BOTAO FILME ATIVADO
         selecionarUmFiltro(filtro: "movie", botao: botaoFilme)
-        
            
     }
     
     override func viewWillAppear(_ animated: Bool) {
 
         //RECARREGAR TELA, SE A TELA FOR A DE FAVORITOS, RECARREGAR OS FILMES NOVAMENTE, POIS PODE TER SIDO ATUALIZADA ( REMOVIDO UM FAVORITO, PELA TELA DE DETALHES)
-
-    
         if filtro == "favoritos"{
             recarregarCollectionView()
         }
@@ -90,14 +88,16 @@ class PesquisaViewController: UIViewController {
 
                 //FOR PARA VERIFICAR SE EXISTE UM FILME NOS FAVORITOS COM O TITULO DIGITADO NA SEARCHBAR
                 for filme in listaFavoritos {
-
-                    let titulo = filme.filmeDecodable?.title ?? ""
-
+                    
+                    //SE FOR FILME PEGAR O title E SE FOR SERIE PEGAR O name
+                    let titulo = filme.filmeDecodable?.title ?? filme.filmeDecodable?.name ?? ""
+                    
                     let textoPesquisadoFavorito = self.textoPesquisado.replacingOccurrences(of: "+", with: " ")
 
                     if (titulo.lowercased().contains(textoPesquisadoFavorito.lowercased())){
                         listaPesquisa.append(filme)
                     }
+
 
                 }
 
