@@ -67,6 +67,9 @@ class DetalhesViewController: UIViewController {
     //MARK: FUNCOES DA VIEW
     
     override func viewDidLoad() {
+        
+        self.navigationController?.navigationBar.isHidden = true
+        
         verificarFavorito()
                
         //FUNCOES DE POPULAR SAO PARA COLOCAR OS ELEMENTOS EM LISTAS, PARA FACILITAR O DESLIGAMENTO/ATIVAMENTO DE TODAS

@@ -9,6 +9,19 @@
 /* Begin PBXBuildFile section */
 		94B1B784234EC0F600643148 /* DAOFilme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B1B783234EC0F600643148 /* DAOFilme.swift */; };
 		94B1B787234EC16100643148 /* Filme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B1B786234EC16100643148 /* Filme.swift */; };
+		94BA6C6F2354B3D10086B6DE /* PesquisaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E7F6B7234FA4C700E0FE55 /* PesquisaCell.swift */; };
+		94BA6C702354B3D10086B6DE /* DAOFilme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B1B783234EC0F600643148 /* DAOFilme.swift */; };
+		94BA6C712354B3D10086B6DE /* Internet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E7F6B9234FA53C00E0FE55 /* Internet.swift */; };
+		94BA6C722354B3D10086B6DE /* Filme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B1B786234EC16100643148 /* Filme.swift */; };
+		94BA6C732354B3D10086B6DE /* PesquisaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E26CAF234F712000BB005C /* PesquisaViewController.swift */; };
+		94BA6C742354B3D10086B6DE /* DetalhesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E7F6BD234FFBE700E0FE55 /* DetalhesViewController.swift */; };
+		94BA6C752354B3D10086B6DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FCC9BB234E53DF00B3038C /* AppDelegate.swift */; };
+		94BA6C762354B3D10086B6DE /* testefastshop.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 94FCC9C4234E53DF00B3038C /* testefastshop.xcdatamodeld */; };
+		94BA6C772354B3D10086B6DE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E7F6B5234F78AF00E0FE55 /* SceneDelegate.swift */; };
+		94BA6C792354B3D10086B6DE /* Pods_testefastshop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41F07B5028377C6277F7A227 /* Pods_testefastshop.framework */; };
+		94BA6C7C2354B3D10086B6DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94FCC9C9234E53E100B3038C /* LaunchScreen.storyboard */; };
+		94BA6C7D2354B3D10086B6DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94FCC9C7234E53E100B3038C /* Assets.xcassets */; };
+		94BA6C7E2354B3D10086B6DE /* DetalhesStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94E7F6BB234FFA8800E0FE55 /* DetalhesStoryBoard.storyboard */; };
 		94E26CAE234F706E00BB005C /* PesquisaStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94E26CAD234F706E00BB005C /* PesquisaStoryBoard.storyboard */; };
 		94E26CB0234F712000BB005C /* PesquisaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E26CAF234F712000BB005C /* PesquisaViewController.swift */; };
 		94E7F6B6234F78AF00E0FE55 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E7F6B5234F78AF00E0FE55 /* SceneDelegate.swift */; };
@@ -54,6 +67,8 @@
 		93C773AC66233518E40CC317 /* Pods_testefastshopTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_testefastshopTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94B1B783234EC0F600643148 /* DAOFilme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAOFilme.swift; sourceTree = "<group>"; };
 		94B1B786234EC16100643148 /* Filme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filme.swift; sourceTree = "<group>"; };
+		94BA6C832354B3D10086B6DE /* testefastshopIPAD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testefastshopIPAD.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		94BA6C842354B3D10086B6DE /* testefastshopIPAD-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "testefastshopIPAD-Info.plist"; path = "/Users/gabrielsousa/Desktop/Projetos/testefastshop/testefastshopIPAD-Info.plist"; sourceTree = "<absolute>"; };
 		94E26CAD234F706E00BB005C /* PesquisaStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PesquisaStoryBoard.storyboard; sourceTree = "<group>"; };
 		94E26CAF234F712000BB005C /* PesquisaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PesquisaViewController.swift; sourceTree = "<group>"; };
 		94E7F6B5234F78AF00E0FE55 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +93,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		94BA6C782354B3D10086B6DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94BA6C792354B3D10086B6DE /* Pods_testefastshop.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		94FCC9B5234E53DF00B3038C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -163,6 +186,7 @@
 				94FCC9B9234E53DF00B3038C /* Products */,
 				E32F398A7E67F0A7A059B14B /* Pods */,
 				14B71F940B2703AE00B89FEB /* Frameworks */,
+				94BA6C842354B3D10086B6DE /* testefastshopIPAD-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -172,6 +196,7 @@
 				94FCC9B8234E53DF00B3038C /* testefastshop.app */,
 				94FCC9D1234E53E100B3038C /* testefastshopTests.xctest */,
 				94FCC9DC234E53E100B3038C /* testefastshopUITests.xctest */,
+				94BA6C832354B3D10086B6DE /* testefastshopIPAD.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -224,6 +249,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		94BA6C6C2354B3D10086B6DE /* testefastshop copy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94BA6C802354B3D10086B6DE /* Build configuration list for PBXNativeTarget "testefastshop copy" */;
+			buildPhases = (
+				94BA6C6D2354B3D10086B6DE /* [CP] Check Pods Manifest.lock */,
+				94BA6C6E2354B3D10086B6DE /* Sources */,
+				94BA6C782354B3D10086B6DE /* Frameworks */,
+				94BA6C7A2354B3D10086B6DE /* Resources */,
+				94BA6C7F2354B3D10086B6DE /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "testefastshop copy";
+			productName = testefastshop;
+			productReference = 94BA6C832354B3D10086B6DE /* testefastshopIPAD.app */;
+			productType = "com.apple.product-type.application";
+		};
 		94FCC9B7234E53DF00B3038C /* testefastshop */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 94FCC9E5234E53E100B3038C /* Build configuration list for PBXNativeTarget "testefastshop" */;
@@ -321,11 +365,22 @@
 				94FCC9B7234E53DF00B3038C /* testefastshop */,
 				94FCC9D0234E53E100B3038C /* testefastshopTests */,
 				94FCC9DB234E53E100B3038C /* testefastshopUITests */,
+				94BA6C6C2354B3D10086B6DE /* testefastshop copy */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		94BA6C7A2354B3D10086B6DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94BA6C7C2354B3D10086B6DE /* LaunchScreen.storyboard in Resources */,
+				94BA6C7D2354B3D10086B6DE /* Assets.xcassets in Resources */,
+				94BA6C7E2354B3D10086B6DE /* DetalhesStoryBoard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		94FCC9B6234E53DF00B3038C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -398,6 +453,45 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		94BA6C6D2354B3D10086B6DE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-testefastshop-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		94BA6C7F2354B3D10086B6DE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-testefastshop/Pods-testefastshop-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-testefastshop/Pods-testefastshop-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-testefastshop/Pods-testefastshop-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A59A8B57B005101632B4D6D9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -457,6 +551,22 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		94BA6C6E2354B3D10086B6DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94BA6C6F2354B3D10086B6DE /* PesquisaCell.swift in Sources */,
+				94BA6C702354B3D10086B6DE /* DAOFilme.swift in Sources */,
+				94BA6C712354B3D10086B6DE /* Internet.swift in Sources */,
+				94BA6C722354B3D10086B6DE /* Filme.swift in Sources */,
+				94BA6C732354B3D10086B6DE /* PesquisaViewController.swift in Sources */,
+				94BA6C742354B3D10086B6DE /* DetalhesViewController.swift in Sources */,
+				94BA6C752354B3D10086B6DE /* AppDelegate.swift in Sources */,
+				94BA6C762354B3D10086B6DE /* testefastshop.xcdatamodeld in Sources */,
+				94BA6C772354B3D10086B6DE /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		94FCC9B4234E53DF00B3038C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -516,6 +626,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		94BA6C812354B3D10086B6DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48919C1684A6A253D20D39FA /* Pods-testefastshop.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 67ALGZ83W8;
+				INFOPLIST_FILE = "testefastshop copy-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.testefastshop;
+				PRODUCT_NAME = testefastshopIPAD;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		94BA6C822354B3D10086B6DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3214F8C24434BBFECEC023E /* Pods-testefastshop.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 67ALGZ83W8;
+				INFOPLIST_FILE = "testefastshop copy-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.testefastshop;
+				PRODUCT_NAME = testefastshopIPAD;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
 		94FCC9E3234E53E100B3038C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -645,7 +793,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.testefastshop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -664,7 +812,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.testefastshop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -759,6 +907,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		94BA6C802354B3D10086B6DE /* Build configuration list for PBXNativeTarget "testefastshop copy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94BA6C812354B3D10086B6DE /* Debug */,
+				94BA6C822354B3D10086B6DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		94FCC9B3234E53DF00B3038C /* Build configuration list for PBXProject "testefastshop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

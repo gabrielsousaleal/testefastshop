@@ -323,7 +323,7 @@ func montarLabelRenda(filme: FilmeDecodable) -> String {
     
     renda.removeFirst()
     
-    renda = "$ \(renda)"
+    renda = "\(renda)"
     
     
     
@@ -341,7 +341,7 @@ func montarLabelCusto(filme: FilmeDecodable) -> String {
     
     custo.removeFirst()
     
-    custo = "$ \(custo)"
+    custo = "\(custo)"
     
     
     
