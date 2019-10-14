@@ -27,6 +27,9 @@ class testefastshopUITests: XCTestCase {
     func testarPesquisa() {
         
         let app = XCUIApplication()
+        
+        app.buttons["Filmes"].tap()
+        
         app.searchFields["Pesquisar por filmes, séries e mais..."].tap()
         
         let hKey = app/*@START_MENU_TOKEN@*/.keys["H"]/*[[".keyboards.keys[\"H\"]",".keys[\"H\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
@@ -55,6 +58,9 @@ class testefastshopUITests: XCTestCase {
     func testarDetalhesFilmeComSite(){
         
         app = XCUIApplication()
+        
+        app.buttons["Filmes"].tap()
+        
         app.searchFields["Pesquisar por filmes, séries e mais..."].tap()
         
         let bKey = app/*@START_MENU_TOKEN@*/.keys["B"]/*[[".keyboards.keys[\"B\"]",".keys[\"B\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
@@ -83,6 +89,8 @@ class testefastshopUITests: XCTestCase {
     }
     
     func testarDetalhesFilmeSemSite(){
+        
+        app.buttons["Filmes"].tap()
         
         app.searchFields["Pesquisar por filmes, séries e mais..."].tap()
         
