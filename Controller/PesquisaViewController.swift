@@ -50,8 +50,16 @@ class PesquisaViewController: UIViewController {
         
         setarDelegates()
         
-        //INICIAR COM O BOTAO FILME ATIVADO
-        selecionarUmFiltro(filtro: "movie", botao: botaoFilme)
+        //SE TIVER ALGUM FILME NA LISTA DE FAVORITOS, INICIAR COM O BOTAO FAVORITOS ATIVADO, SE NAO, INICIAR COM O BOTAO FILMES ATIVADO
+        DAOFilme().pegarFavoritos { favoritos in
+            if favoritos.count > 0 {
+                self.selecionarUmFiltro(filtro: "favoritos", botao: self.botaoFavoritos)
+            } else {
+                self.selecionarUmFiltro(filtro: "movie", botao: self.botaoFilme)
+            }
+        }
+        
+       
            
     }
     
