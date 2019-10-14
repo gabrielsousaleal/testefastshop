@@ -26,8 +26,10 @@ class testefastshopUITests: XCTestCase {
 
     func testarPesquisa() {
         
-        let app = XCUIApplication()
+        //ANTES DE RODAR O TESTE, TENHA CERTEZA QUE O TECLADO DO SIMULADOR ESTÁ ATIVADO ( COMMAND + K )
         
+        let app = XCUIApplication()
+                
         app.buttons["Filmes"].tap()
         
         app.searchFields["Pesquisar por filmes, séries e mais..."].tap()
@@ -56,6 +58,8 @@ class testefastshopUITests: XCTestCase {
     }
     
     func testarDetalhesFilmeComSite(){
+        
+         //ANTES DE RODAR O TESTE, TENHA CERTEZA QUE O TECLADO DO SIMULADOR ESTÁ ATIVADO ( COMMAND + K )
         
         app = XCUIApplication()
         
@@ -89,6 +93,8 @@ class testefastshopUITests: XCTestCase {
     }
     
     func testarDetalhesFilmeSemSite(){
+        
+         //ANTES DE RODAR O TESTE, TENHA CERTEZA QUE O TECLADO DO SIMULADOR ESTÁ ATIVADO ( COMMAND + K )
         
         app.buttons["Filmes"].tap()
         
