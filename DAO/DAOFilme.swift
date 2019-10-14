@@ -13,13 +13,18 @@ import UIKit
 
 class DAOFilme {
     
+    
+    //MARK: API FILMES
     func buscarFilmePorNome(nome: String, pagina: Int, filtro: String, completion: @escaping([FilmeObjeto]) -> () ) {
         
         var listaFilmesObj: [FilmeObjeto] = []
                
         let url = "https://api.themoviedb.org/3/search/\(filtro)?api_key=dcf373a212e3fd454f97f09a273a42e2&query=\(nome)&language=pt-BR&page=\(pagina)"
+        
+        //TRATANDO CARACTERES ESPECIAIS NA URL
+        let urlComespecial = url.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) ?? ""
                
-        let request = NSMutableURLRequest(url: NSURL(string: url)! as URL,
+        let request = NSMutableURLRequest(url: NSURL(string: urlComespecial)! as URL,
                                                  cachePolicy: .useProtocolCachePolicy,
                                                    timeoutInterval: 10.0)
         request.httpMethod = "GET"
@@ -38,9 +43,7 @@ class DAOFilme {
                     let json = try JSONDecoder().decode(Lista.self, from: data)
                     
                     let informacoesPesquisa = try JSONDecoder().decode(InformacoesPesquisa.self, from: data)
-                    
-                    print(informacoesPesquisa.total_pages)
-                        
+                                            
                     let semaforo = DispatchSemaphore(value: 1)
                     
                     if informacoesPesquisa.total_pages < pagina {

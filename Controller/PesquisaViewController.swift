@@ -39,7 +39,7 @@ class PesquisaViewController: UIViewController {
     
     override func viewDidLoad() {
            super.viewDidLoad()
-        
+                
         popularBotoes()
         
         esconderTeclado()
@@ -133,11 +133,10 @@ class PesquisaViewController: UIViewController {
         DAOFilme().buscarFilmePorNome(nome: textoPesquisado, pagina: 1, filtro: filtro){ filmes in
             
             DispatchQueue.main.async {
-            
                 self.listaFilmes.removeAll()
                 self.listaFilmes = filmes
                 self.collectionView.reloadData()
-            
+
             }
             
         }

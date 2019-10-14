@@ -292,6 +292,12 @@ class DetalhesViewController: UIViewController {
         
         if let url = URL(string: filme?.filmeDecodable?.homepage ?? ""){
             UIApplication.shared.open(url)
+        } else {
+            
+            let alert = UIAlertController(title: "Ops!", message: "Esse filme não tem um site", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+            present(alert, animated: true)
+            
         }
         
     }
