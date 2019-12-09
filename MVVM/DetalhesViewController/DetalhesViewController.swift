@@ -13,7 +13,9 @@ import AlamofireImage
 
 class DetalhesViewController: UIViewController {
     
-    //STORYBOARD
+    //*****************************************************
+    //MARK: - Storyboard Outlets
+    //*****************************************************
     
     @IBOutlet var posterView: UIImageView!
     @IBOutlet var tituloLabel: UILabel!
@@ -44,63 +46,73 @@ class DetalhesViewController: UIViewController {
     @IBOutlet var imagemNota: UIImageView!
     @IBOutlet var scrollview: UIScrollView!
     @IBOutlet var botaoFavorito: UIButton!
-    
-    //STORYBOARD TITULOS
-    
     @IBOutlet var tagline: UILabel!
     @IBOutlet var popularidade: UILabel!
     @IBOutlet var renda: UILabel!
     @IBOutlet var custo: UILabel!
     
+    //*****************************************************
+    //MARK: - Public Proprieties
+    //*****************************************************
     
-    //VARIÁVEIS
+    var viewModel: DetalhesViewModel!
     
-    var filme: FilmeObjeto!
-    var listaFaixas: [UIView] = []
-    var listaBotoes: [UIButton] = []
-    var viewsScrollView: [UIView] = []
-    var constraints: [NSLayoutConstraint] = []
-    var opcao = ""
-    var favorito = false
+    //*****************************************************
+    //MARK: - Private Proprieties
+    //*****************************************************
     
+    private var listaFaixas: [UIView] = []
+    private var listaBotoes: [UIButton] = []
+    private var viewsScrollView: [UIView] = []
+    private var constraints: [NSLayoutConstraint] = []
+    private var opcao = ""
+    private var favorito = false
     
-    //MARK: FUNCOES DA VIEW
+    //*****************************************************
+    //MARK: - Inits
+    //*****************************************************
+    
+    func setup(viewModel: DetalhesViewModel){
+        self.viewModel = viewModel
+    }
+    
+    //*****************************************************
+    //MARK: - Life Cycle
+    //*****************************************************
     
     override func viewDidLoad() {
         
         self.navigationController?.navigationBar.isHidden = true
         
         verificarFavorito()
-               
+        
         //FUNCOES DE POPULAR SAO PARA COLOCAR OS ELEMENTOS EM LISTAS, PARA FACILITAR O DESLIGAMENTO/ATIVAMENTO DE TODAS
         popularListaDeFaixas()
-               
+        
         popularListaDeBotoes()
-               
+        
         popularListaDeViewsDaScroll()
-               
+        
         //INICIAR COM A ABA DE SOBRE DA SCROLL VIEW ACIONADA POR PADRÃO
         acionarBotaoSobre(sobreBotao)
         
-        DAOFilme().pegarFilmeDetalhado(id: filme.filmeDecodable?.id ?? 0, tipo: filme.tipo ?? "") { filme in
+        viewModel.baixarDetalhesDoFilme { viewModel in
             DispatchQueue.main.async {
-                self.filme = filme.first
-                
                 self.preencherLabelsGenericas()
-                
-                if self.filme.tipo == "movie" {
+                self.viewModel = viewModel
+                guard let tipo = self.viewModel.filme.tipo else { return }
+                if tipo == "movie" {
                     self.preencherLabelsFilme()
                 } else {
                     self.preencherLabelsSerie()
                 }
-                
             }
         }
-                
     }
     
-    
-    //MARK: FUNCOES CONTROLLER
+    //*****************************************************
+    //MARK: - Private Methods
+    //*****************************************************
     
     func acionarBotao(botao: UIButton, opcao: String){
         
@@ -139,72 +151,71 @@ class DetalhesViewController: UIViewController {
     }
     
     func preencherLabelsFilme(){
-        
-        tituloLabel.text = filme.filmeDecodable?.title ?? "N/A"
-        paisLabel.text = filme.pais ?? "N/A"
-        lingueLabel.text = filme.idiomas ?? "N/A"
-        rendaFixo.text = filme.renda ?? "N/A"
-        generosLabel.text = filme.generos ?? "N/A"
-        lancamentoLabel.text = filme.filmeDecodable?.release_date ?? "N/A"
-        tituloOriginalLabel.text = filme.filmeDecodable?.original_title ?? "N/A"
-        duracaoLabel.text = "\(filme.filmeDecodable?.runtime ?? 0) min"
-        idiomaOriginalLabel.text = filme.filmeDecodable?.original_language ?? "N/A"
-        statusLabel.text = filme.filmeDecodable?.status ?? "N/A"
-        custoLabel.text = filme.custo ?? "N/A"
-        popularidadeLabel.text = String(filme.filmeDecodable?.popularity ?? 0)
-        taglineLabel.text = filme.filmeDecodable?.tagline ?? "N/A"
+        tituloLabel.text = viewModel.filme.filmeDecodable?.title ?? "N/A"
+        paisLabel.text = viewModel.filme.pais ?? "N/A"
+        lingueLabel.text = viewModel.filme.idiomas ?? "N/A"
+        rendaFixo.text = viewModel.filme.renda ?? "N/A"
+        generosLabel.text = viewModel.filme.generos ?? "N/A"
+        lancamentoLabel.text = viewModel.filme.filmeDecodable?.release_date ?? "N/A"
+        tituloOriginalLabel.text = viewModel.filme.filmeDecodable?.original_title ?? "N/A"
+        duracaoLabel.text = "\(viewModel.filme.filmeDecodable?.runtime ?? 0) min"
+        idiomaOriginalLabel.text = viewModel.filme.filmeDecodable?.original_language ?? "N/A"
+        statusLabel.text = viewModel.filme.filmeDecodable?.status ?? "N/A"
+        custoLabel.text = viewModel.filme.custo ?? "N/A"
+        popularidadeLabel.text = String(viewModel.filme.filmeDecodable?.popularity ?? 0)
+        taglineLabel.text = viewModel.filme.filmeDecodable?.tagline ?? "N/A"
         
     }
     
     func preencherLabelsGenericas() {
         
-        DAOFilme().baixarPoster(path: filme?.filmeDecodable?.poster_path ?? "", tamanho: 600) { poster in
-                   
-                   DispatchQueue.main.async {
-                       self.posterView.image = poster
-                   }
-                   
-               }
+        DAOFilme().baixarPoster(path: viewModel.filme.filmeDecodable?.poster_path ?? "", tamanho: 600) { poster in
+            
+            DispatchQueue.main.async {
+                self.posterView.image = poster
+            }
+            
+        }
         
-        let imagem = filme.estrela
-               
+        let imagem = viewModel.filme.estrela
+        
         imagemNota.image = imagem
         
-        if filme.filmeDecodable?.vote_average != nil {
-            notaIMDBLabel.text = "\(filme.filmeDecodable?.vote_average ?? 0)/10"
+        if viewModel.filme.filmeDecodable?.vote_average != nil {
+            notaIMDBLabel.text = "\(viewModel.filme.filmeDecodable?.vote_average ?? 0)/10"
         } else {
             notaIMDBLabel.text = "filme sem nota"
         }
         
-        sinopseLabel.text = filme.filmeDecodable?.overview ?? ""
+        sinopseLabel.text = viewModel.filme.filmeDecodable?.overview ?? ""
         
-        prodocaoLabel.text = filme.producao ?? "N/A"
+        prodocaoLabel.text = viewModel.filme.producao ?? "N/A"
         
     }
     
     func preencherLabelsSerie(){
         
-        tituloLabel.text = filme.filmeDecodable?.name ?? "N/A"
-        lancamentoLabel.text = filme.filmeDecodable?.first_air_date ?? "N/A"
-        duracaoLabel.text = "\(filme.filmeDecodable?.episode_run_time?.first ?? 0) min"
+        tituloLabel.text = viewModel.filme.filmeDecodable?.name ?? "N/A"
+        lancamentoLabel.text = viewModel.filme.filmeDecodable?.first_air_date ?? "N/A"
+        duracaoLabel.text = "\(viewModel.filme.filmeDecodable?.episode_run_time?.first ?? 0) min"
         
         popularidade.text = "Criadores"
-        popularidadeLabel.text = filme.criadores ?? "N/A"
-        lingueLabel.text = filme.idiomasSerie ?? "N/A"
-        paisLabel.text = filme.filmeDecodable?.origin_country?.first ?? "N/A"
-        tituloOriginalLabel.text = filme.filmeDecodable?.original_name ?? "N/A"
-        idiomaOriginalLabel.text = filme.filmeDecodable?.original_language ?? "N/A"
-        generosLabel.text = filme.generos
-        statusLabel.text = filme.statusSerie ?? "N/A"
+        popularidadeLabel.text = viewModel.filme.criadores ?? "N/A"
+        lingueLabel.text = viewModel.filme.idiomasSerie ?? "N/A"
+        paisLabel.text = viewModel.filme.filmeDecodable?.origin_country?.first ?? "N/A"
+        tituloOriginalLabel.text = viewModel.filme.filmeDecodable?.original_name ?? "N/A"
+        idiomaOriginalLabel.text = viewModel.filme.filmeDecodable?.original_language ?? "N/A"
+        generosLabel.text = viewModel.filme.generos
+        statusLabel.text = viewModel.filme.statusSerie ?? "N/A"
         
         tagline.text = "Episodios"
-        taglineLabel.text = "\(filme.filmeDecodable?.number_of_episodes ?? 0)"
+        taglineLabel.text = "\(viewModel.filme.filmeDecodable?.number_of_episodes ?? 0)"
         
         custo.text = "Temporadas"
-        custoLabel.text = "\(filme.filmeDecodable?.number_of_seasons ?? 0)"
+        custoLabel.text = "\(viewModel.filme.filmeDecodable?.number_of_seasons ?? 0)"
         
         renda.text = "Última estréia"
-        rendaFixo.text = filme.filmeDecodable?.last_air_date ?? "N/A"
+        rendaFixo.text = viewModel.filme.filmeDecodable?.last_air_date ?? "N/A"
         
     }
     
@@ -214,7 +225,7 @@ class DetalhesViewController: UIViewController {
         let favoritos = DAOFilme().pegarListaFavoritos()
         
         for favorito in favoritos {
-            if favorito.id ?? 0 == filme?.filmeDecodable?.id ?? 0 {
+            if favorito.id ?? 0 == viewModel.filme.filmeDecodable?.id ?? 0 {
                 self.favorito = true
                 botaoFavorito.setImage(UIImage(named:"favoritoSelecionado"), for: .normal)
             }
@@ -236,9 +247,9 @@ class DetalhesViewController: UIViewController {
         viewsScrollView.append(infoView)
     }
     
-    
-    
-    //MARK: FUNCOES STORYBOARD
+    //*****************************************************
+    //MARK: - Storyboard Actions
+    //*****************************************************
     
     @IBAction func acionarBotaoSobre(_ sender: UIButton) {
         
@@ -251,7 +262,7 @@ class DetalhesViewController: UIViewController {
         
         let botContainer = NSLayoutConstraint(item: scrollviewContainer!, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: idiomaOriginalLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 15)
         
-         let sobreBot = NSLayoutConstraint(item: sobreView!, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: idiomaOriginalLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 15)
+        let sobreBot = NSLayoutConstraint(item: sobreView!, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: idiomaOriginalLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 15)
         
         constraints.append(botContainer)
         
@@ -285,7 +296,7 @@ class DetalhesViewController: UIViewController {
     @IBAction func irParaOSite(_ sender: Any) {
         
         //SE NAO HOUVER SITE, MOSTRAR UM ALERT COMO FEEDBACK
-        if filme?.filmeDecodable?.homepage == nil{
+        if viewModel.filme.filmeDecodable?.homepage == nil{
             
             let alert = UIAlertController(title: "Ops!", message: "Esse filme não tem um site", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
@@ -293,7 +304,7 @@ class DetalhesViewController: UIViewController {
             
         }
         
-        if let url = URL(string: filme?.filmeDecodable?.homepage ?? ""){
+        if let url = URL(string: viewModel.filme.filmeDecodable?.homepage ?? ""){
             UIApplication.shared.open(url)
         } else {
             
@@ -310,7 +321,7 @@ class DetalhesViewController: UIViewController {
         //SE JÁ FOR FAVORITO, DESFAVORITAR E MUDAR A IMAGEM DO CORAÇÃO(BOTAO FAVORITO)
         if favorito{
             
-            DAOFilme().desfavoritar(filme: filme?.filmeDecodable?.id ?? 0 )
+            DAOFilme().desfavoritar(filme: viewModel.filme.filmeDecodable?.id ?? 0 )
             
             sender.setImage(UIImage(named: "favorito"), for: .normal)
             
@@ -318,7 +329,7 @@ class DetalhesViewController: UIViewController {
             
         } else {
             
-            let fav = Favorito(id: filme?.filmeDecodable?.id ?? 0, tipo: filme?.tipo ?? "")
+            let fav = Favorito(id: viewModel.filme.filmeDecodable?.id ?? 0, tipo: viewModel.filme.tipo ?? "")
             
             DAOFilme().salvarFilmeFavorito(filme: fav)
             
@@ -332,15 +343,5 @@ class DetalhesViewController: UIViewController {
         
         
         
-    }
-    
-    
-    
-}
-
-
-extension DetalhesViewController {
-     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
 }

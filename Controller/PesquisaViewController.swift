@@ -519,9 +519,9 @@ extension PesquisaViewController: UICollectionViewDelegate, UICollectionViewData
 
         let detalhesViewController = storyBoard.instantiateViewController(withIdentifier: "DetalhesViewController") as! DetalhesViewController
 
-        detalhesViewController.filme = filme
+        //detalhesViewController.filme = filme
 
-        navigationController?.pushViewController(detalhesViewController, animated: true)
+        //navigationController?.pushViewController(detalhesViewController, animated: true)
         
     }
     

@@ -53,17 +53,15 @@ class DAOFilme {
                     
                         for filme in json.results {
                             
-                            _ = FilmeObjeto(filmeDecodable: filme) { result in
+                            let filme = FilmeObjeto(filmeDecodable: filme)
+                            
+                            listaFilmesObj.append(filme)
+                            
+                            if listaFilmesObj.count == json.results.count{
+                                semaforo.signal()
+                                completion(listaFilmesObj)
                                 
-                                listaFilmesObj.append(result)
-                                
-                                if listaFilmesObj.count == json.results.count{
-                                    semaforo.signal()
-                                    completion(listaFilmesObj)
-                                    
-                                }
-                        
-                      }
+                            }
                     }
                         
                         //USO DE SEMAFORO PARA ESPERAR QUE O FOR SEJA TOTALMENTE EXECUTADO
@@ -126,14 +124,12 @@ class DAOFilme {
             if let data = data {
                 do {
                     let json = try JSONDecoder().decode(FilmeDecodable.self, from: data)
-                                                    
-                    _ = FilmeObjeto(filmeDecodable: json) { result in
-                                                        
-                        listaFilmesObj.append(result)
-                                
-                        completion(listaFilmesObj)
-
-                      }
+                    
+                    let filme = FilmeObjeto(filmeDecodable: json)
+                    
+                    listaFilmesObj.append(filme)
+                            
+                    completion(listaFilmesObj)
                         
                     } catch {
                        
@@ -170,16 +166,14 @@ class DAOFilme {
                 for filme in listaFilmesId {
                     
                     DAOFilme().pegarFilmeDetalhado(id: filme.id!,tipo: filme.tipo!) { filme in
-                        _ = FilmeObjeto(filmeDecodable: filme[0].filmeDecodable!, completion: { filmeObj in
-                            
-                                listaFilmes.append(filmeObj)
-                                if listaFilmesId.count == listaFilmesId.count {
-                                    semaforo.signal()
-                                    completion(listaFilmes)
-                                }
-                            
-                        })
-
+                        
+                        let filmeObj = FilmeObjeto(filmeDecodable: filme[0].filmeDecodable!)
+                        
+                        listaFilmes.append(filmeObj)
+                        if listaFilmesId.count == listaFilmesId.count {
+                            semaforo.signal()
+                            completion(listaFilmes)
+                        }
                     }
                 }
                 

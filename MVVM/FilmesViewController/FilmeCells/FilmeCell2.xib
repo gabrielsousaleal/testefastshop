@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FilmeCell2" id="FRT-se-1rv" customClass="FilmeCell2" customModule="testefastshop" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="160" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="uQR-qZ-wjD">
+                <rect key="frame" x="0.0" y="0.0" width="160" height="200"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LUW-3O-KJt">
+                        <rect key="frame" x="0.0" y="0.0" width="160" height="200"/>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardMoldura" translatesAutoresizingMaskIntoConstraints="NO" id="1t4-X0-gDz">
+                        <rect key="frame" x="0.0" y="0.0" width="160" height="200"/>
+                    </imageView>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9kb-ou-sDs">
+                        <rect key="frame" x="125" y="6" width="30" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="Y81-BA-7MN"/>
+                            <constraint firstAttribute="width" constant="30" id="aXU-ww-p44"/>
+                        </constraints>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lançamento" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R10-J8-f4r">
+                        <rect key="frame" x="8" y="164" width="144" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="igB-B2-M16"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Título" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J1F-fK-3GT">
+                        <rect key="frame" x="8" y="136" width="144" height="20.5"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2star" translatesAutoresizingMaskIntoConstraints="NO" id="kGl-es-tD3">
+                        <rect key="frame" x="8" y="112" width="144" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="DRL-GK-GZu"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="LUW-3O-KJt" firstAttribute="leading" secondItem="uQR-qZ-wjD" secondAttribute="leading" id="2Zg-ok-giN"/>
+                    <constraint firstItem="kGl-es-tD3" firstAttribute="leading" secondItem="uQR-qZ-wjD" secondAttribute="leading" constant="8" id="6E2-rj-7B8"/>
+                    <constraint firstAttribute="trailing" secondItem="R10-J8-f4r" secondAttribute="trailing" constant="8" id="76f-xI-u3p"/>
+                    <constraint firstItem="J1F-fK-3GT" firstAttribute="leading" secondItem="uQR-qZ-wjD" secondAttribute="leading" constant="8" id="9lO-Gi-5Bs"/>
+                    <constraint firstItem="R10-J8-f4r" firstAttribute="leading" secondItem="uQR-qZ-wjD" secondAttribute="leading" constant="8" id="BhZ-4M-YAa"/>
+                    <constraint firstItem="1t4-X0-gDz" firstAttribute="top" secondItem="uQR-qZ-wjD" secondAttribute="top" id="DyY-d3-Qoe"/>
+                    <constraint firstAttribute="trailing" secondItem="9kb-ou-sDs" secondAttribute="trailing" constant="5" id="Fnq-t0-vOs"/>
+                    <constraint firstAttribute="trailing" secondItem="kGl-es-tD3" secondAttribute="trailing" constant="8" id="I6H-xq-12b"/>
+                    <constraint firstAttribute="trailing" secondItem="1t4-X0-gDz" secondAttribute="trailing" id="IO4-o3-lYy"/>
+                    <constraint firstItem="1t4-X0-gDz" firstAttribute="leading" secondItem="uQR-qZ-wjD" secondAttribute="leading" id="Uoe-Xm-8m8"/>
+                    <constraint firstAttribute="bottom" secondItem="R10-J8-f4r" secondAttribute="bottom" constant="19" id="Wm1-2L-MOr"/>
+                    <constraint firstAttribute="trailing" secondItem="LUW-3O-KJt" secondAttribute="trailing" id="axf-d7-XZe"/>
+                    <constraint firstItem="R10-J8-f4r" firstAttribute="top" secondItem="J1F-fK-3GT" secondAttribute="bottom" constant="7.5" id="eB8-IY-HBv"/>
+                    <constraint firstItem="J1F-fK-3GT" firstAttribute="top" secondItem="kGl-es-tD3" secondAttribute="bottom" constant="8" id="id9-hP-IWg"/>
+                    <constraint firstAttribute="bottom" secondItem="1t4-X0-gDz" secondAttribute="bottom" id="mbW-0f-DpK"/>
+                    <constraint firstAttribute="bottom" secondItem="LUW-3O-KJt" secondAttribute="bottom" id="okT-Eg-Kj1"/>
+                    <constraint firstAttribute="trailing" secondItem="J1F-fK-3GT" secondAttribute="trailing" constant="8" id="u8A-1d-kce"/>
+                    <constraint firstItem="LUW-3O-KJt" firstAttribute="top" secondItem="uQR-qZ-wjD" secondAttribute="top" id="xd0-SP-bwO"/>
+                    <constraint firstItem="9kb-ou-sDs" firstAttribute="top" secondItem="uQR-qZ-wjD" secondAttribute="top" constant="6" id="zfb-Gr-s3P"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <connections>
+                <outlet property="containerView" destination="uQR-qZ-wjD" id="7av-c4-1Vi"/>
+                <outlet property="degradeView" destination="1t4-X0-gDz" id="hcw-X3-nBl"/>
+                <outlet property="favorito" destination="9kb-ou-sDs" id="BLA-Ri-8IZ"/>
+                <outlet property="lancamentoLabel" destination="R10-J8-f4r" id="5ZL-qH-USH"/>
+                <outlet property="notaImagem" destination="kGl-es-tD3" id="Gc3-fX-pnj"/>
+                <outlet property="posterView" destination="LUW-3O-KJt" id="sgu-Jl-TEX"/>
+                <outlet property="tituloLabel" destination="J1F-fK-3GT" id="Noy-ft-mO2"/>
+            </connections>
+            <point key="canvasLocation" x="-182.60869565217394" y="72.991071428571431"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="2star" width="112" height="16"/>
+        <image name="cardMoldura" width="160" height="200"/>
+    </resources>
+</document>
